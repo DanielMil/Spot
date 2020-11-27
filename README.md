@@ -27,7 +27,7 @@ DATABASE_HOST=<'localhost' for local or 'postgres' for Docker>
 ORIGIN=http://localhost:3000
 ```
 
-### 3. Run the App
+### 3. Run the Server
 
 ### To run the back-end:
 ```console
@@ -36,7 +36,11 @@ foo@bar:~$ npm install
 foo@bar:~$ npm run dev
 ```
 
-### Linter and VSCode Config
+###4. Run the Mobile App (Soon)
+
+### 5. Editor Config (Optional)
+
+#### Linter and VSCode Config
 - To more easily develop with the linter and beautifier, download the 'eslint' extension in VSCode.
 - To automatically beautify the code on save, click "ctrl+shift+p" or "cmd+shift+p" then search for settings.json.
   In the settings.json file add the following snippet: 
