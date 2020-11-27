@@ -5,7 +5,7 @@
 * [PostgreSQL](https://www.postgresql.org/download/) - SQL-based datastore.   
 * [Postman](https://www.postman.com/downloads/) - Make requests to the REST API backend
 * [DBeaver](https://dbeaver.io/download/) - Graphic user interface for the database
-* [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) - Containerization software.
+* [Docker for Windows](https://docs.docker.com/docker-for-windows/install/) - Containerization software. (Optional)
 
 ### 2. Create a .env file in the root directory
 This file will contain the environment variables to connect to the server, connect to an email 
