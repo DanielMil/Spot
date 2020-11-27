@@ -36,6 +36,8 @@ foo@bar:~$ npm install
 foo@bar:~$ npm run dev
 ```
 
+You can ensure that the setup was successful by running the ```npm run test``` and ensuring that all unit tests pass.
+
 ### 4. Run the Mobile App (Soon)
 
 ### 5. Editor Config (Optional)
