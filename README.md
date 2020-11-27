@@ -38,7 +38,21 @@ foo@bar:~$ npm run dev
 
 You can ensure that the setup was successful by running the ```npm run test``` and ensuring that all unit tests pass.
 
-### 4. Run the Mobile App (Soon)
+### 4. Run the Mobile App
+
+Download the Expo app on your mobile device. When prompted, use your phone camera to scan the QR code.
+
+To run the front-end:
+```console
+# Install Expo globally
+foo@bar:~$ npm install --global expo-cli
+foo@bar:~$ cd mobile
+foo@bar:~$ npm start
+# A web browser should launch with a QR code. Scan this code to launch the app on your phone.
+```
+For me info about Expo, click [here](https://docs.expo.io/).
+
+For UI consistency, use the components found [here](https://docs.nativebase.io/Components.html#Components).
 
 ### 5. Editor Config (Optional)
 
