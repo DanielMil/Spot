@@ -29,7 +29,7 @@ ORIGIN=http://localhost:3000
 
 ### 3. Run the Server
 
-### To run the back-end:
+#### To run the back-end:
 ```console
 foo@bar:~$ cd server
 foo@bar:~$ npm install
