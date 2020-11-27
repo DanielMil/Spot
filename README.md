@@ -1,7 +1,7 @@
 # Spot
 
 ## Environment Setup
-#### 1. Install the following software:
+### 1. Install the following software:
 * [PostgreSQL](https://www.postgresql.org/download/) - SQL-based datastore.   
 * [Postman](https://www.postman.com/downloads/) - Make requests to the REST API backend
 * [DBeaver](https://dbeaver.io/download/) - Graphic user interface for the database
