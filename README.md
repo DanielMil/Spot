@@ -36,7 +36,7 @@ foo@bar:~$ npm install
 foo@bar:~$ npm run dev
 ```
 
-###4. Run the Mobile App (Soon)
+### 4. Run the Mobile App (Soon)
 
 ### 5. Editor Config (Optional)
 
