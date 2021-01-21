@@ -1,5 +1,10 @@
 import { Strategy } from 'passport-local';
 import { userInit, UserModel } from '../models/User';
+import { passInit, PassModel } from '../models/Pass';
+import { carInit, CarModel } from '../models/Car';
+import { parkingLotInit, ParkingLotModel } from '../models/ParkingLot';
+import { userHistoryInit, UserHistoryModel } from '../models/UserHistory';
+import { userPassesInit, UserPassesModel } from '../models/UserPass';
 import bcrypt from 'bcrypt';
 import { Request, Response } from 'express';
 import { NextFunction } from 'connect';
@@ -78,6 +83,16 @@ export const initializeTables = async (): Promise<any> => {
         await sequelize.authenticate();
         await userInit();
         await UserModel.sync();
+        await carInit();
+        await CarModel.sync();
+        await passInit();
+        await PassModel.sync();
+        await parkingLotInit();
+        await ParkingLotModel.sync();
+        await userHistoryInit();
+        await UserHistoryModel.sync();
+        await userPassesInit();
+        await UserPassesModel.sync();
     } catch (err) {
         console.log(err);
     }
