@@ -36,12 +36,12 @@ with open("testdataset/correctplate.txt", "r") as infile:
         plateNumber = pytesseract.image_to_string(finalImage, 'eng',
                                                   '-c tessedit_char_whitelist=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ --psm 8')
 
-        plateNumber = re.sub(r'[\x00-\x08\x0b\x0c\x0e-\x1f\x7f-\xff]', '', plateNumber)
+        plateNumber = re.sub(r'[\x0c]', '', plateNumber)
 
-        if plateNumber == line:
+        if plateNumber.rstrip() == line.rstrip():
             print("Test passed. Plate: " + plateNumber)
         else:
-            print("Test failed. Plate: " + plateNumber)
+            print("Test failed. Plate: " + plateNumber + " " + line)
 
         counter = counter + 1
 

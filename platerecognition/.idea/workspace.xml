@@ -12,12 +12,12 @@
     <favorites_list name="platerecognition" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/plate_scanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+            <state relative-caret-position="265">
+              <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="49" selection-end-column="14" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -25,11 +25,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testplatescanner.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+            <state relative-caret-position="205">
+              <caret line="37" selection-start-line="37" selection-end-line="37" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
@@ -63,21 +63,21 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testdataset/Cars6.png">
+        <entry file="file://$PROJECT_DIR$/testdataset/Cars5.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/testdataset/correctplate.txt">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
+            <state relative-caret-position="15">
+              <caret line="1" column="7" selection-start-line="1" selection-end-line="1" selection-end-column="7" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/testdataset/Cars7.png">
+        <entry file="file://$PROJECT_DIR$/testdataset/Cars6.png">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
@@ -94,9 +94,9 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/chapter1.py" />
-        <option value="$PROJECT_DIR$/plate_scanner.py" />
-        <option value="$PROJECT_DIR$/testdataset/correctplate.txt" />
         <option value="$PROJECT_DIR$/testplatescanner.py" />
+        <option value="$PROJECT_DIR$/testdataset/correctplate.txt" />
+        <option value="$PROJECT_DIR$/plate_scanner.py" />
       </list>
     </option>
   </component>
@@ -110,7 +110,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -121,12 +120,18 @@
             <path>
               <item name="platerecognition" type="b2602c69:ProjectViewProjectNode" />
               <item name="platerecognition" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="platerecognition" type="b2602c69:ProjectViewProjectNode" />
+              <item name="platerecognition" type="462c0819:PsiDirectoryNode" />
               <item name="testdataset" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -144,7 +149,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.testplatescanner">
+  <component name="RunManager" selected="Python.plate_scanner">
     <configuration name="chapter1" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="platerecognition" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -210,8 +215,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.testplatescanner" />
         <item itemvalue="Python.plate_scanner" />
+        <item itemvalue="Python.testplatescanner" />
         <item itemvalue="Python.chapter1" />
       </list>
     </recent_temporary>
@@ -233,13 +238,9 @@
     <frame x="0" y="25" width="1440" height="875" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Favorites" sideWeight="0.5019157" side_tool="true" weight="0.18604651" />
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49808428" visible="true" weight="0.18604651" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
-      <window_info anchor="bottom" id="Terminal" weight="0.3298969" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
+      <window_info id="Favorites" order="2" sideWeight="0.5019157" side_tool="true" weight="0.18604651" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32947233" />
       <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32818532" />
@@ -247,132 +248,56 @@
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Terminal" order="8" weight="0.3298969" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/dataset/Cars399.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars402.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars401.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars403.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars404.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars405.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars406.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars407.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars408.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars409.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars410.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars411.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars412.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars413.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars414.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars415.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars416.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars417.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars418.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars419.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars420.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars421.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars422.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars423.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars424.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars425.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars427.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars428.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars429.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars430.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars432.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars431.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars426.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars34.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars239.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars203.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars13.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars7.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars9.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testdataset/Cars5.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/dataset/Cars399.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars402.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars401.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars403.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars404.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars405.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars406.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars407.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars408.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars409.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars410.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars411.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars412.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars413.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars414.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars415.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars416.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars417.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars418.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars419.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars420.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars421.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars422.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars423.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars424.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars425.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars427.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars428.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars429.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars430.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars432.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars431.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars426.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars34.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars239.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars203.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars13.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars7.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars9.png" />
+    <entry file="file://$PROJECT_DIR$/dataset/Cars8.png" />
     <entry file="file://$PROJECT_DIR$/testdataset/Cars2.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
@@ -382,42 +307,39 @@
     <entry file="file://$PROJECT_DIR$/testdataset/Cars4.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/testdataset/Cars1.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/dataset/Cars8.png">
+    <entry file="file://$PROJECT_DIR$/testdataset/Cars5.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/testdataset/Cars6.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/testdataset/correctplate.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="7" selection-start-line="1" selection-end-line="1" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/testdataset/Cars0.png">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/plate_scanner.py">
+    <entry file="file://$PROJECT_DIR$/testdataset/Cars1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/testplatescanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="21" column="17" lean-forward="true" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="17" />
+        <state relative-caret-position="205">
+          <caret line="37" selection-start-line="37" selection-end-line="37" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/testdataset/Cars7.png">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testdataset/correctplate.txt">
+    <entry file="file://$PROJECT_DIR$/plate_scanner.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/testplatescanner.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="301">
-          <caret line="38" column="22" selection-start-line="38" selection-start-column="22" selection-end-line="38" selection-end-column="22" />
+        <state relative-caret-position="265">
+          <caret line="44" lean-forward="true" selection-start-line="44" selection-end-line="49" selection-end-column="14" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
           </folding>
