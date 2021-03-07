@@ -1,0 +1,54 @@
+Spot Ideas
+
+Pages:
+
+// Client-server logic
+Register not owner -> Login -> Landing page -> View/Register Car -> Enter vehicle info form
+                                            -> Add pass (Search bar searching for lots) -> Fake payment * -> Thank you screen 
+                                            -> User info (Passes, cancel passes, parking info, change password, change email)
+Register owner -> Register Lot -> Landing Page -> Register Lot 
+                                               -> Register Pass for lot (Dropdown select lot)
+                                               -> Lot Info (Number of spots open, edit rate)
+Login guest -> Enter plate -> Screen with lot info and Payment options -> Fake payment * -> Thank you screen 
+
+
+
+// Controller-server logic
+REST Call Endpoint -> 
+- Business Logic (Send plate number and lot id)
+- Cross reference lot id with plate number
+req = {
+    lot_id: 1,
+    plate_number: 'abcd 123',
+}
+res = {
+    access_granted: true,
+    rate: 0.00,
+}
+res = { 
+    access_granted: false,
+    rate: 3.49
+}
+-> Open with rate or pass access granted
+
+// Endpoints
+- GET all cars from User
+- POST register new car for User
+- PUT update car info
+- DELETE car from user
+
+- GET all registered lots
+- GET single lot info by lot id
+- GET all lots from a user
+- POST new lot 
+- PUT update single lot info
+- DELETE single lot
+
+- POST new pass for given lot
+- GET all passes for a user
+- PUT update pass
+- DELETE pass
+
+- GET parking history for user
+
+- POST Check user has pass, add to user history, return access info
