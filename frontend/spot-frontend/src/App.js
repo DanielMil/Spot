@@ -12,6 +12,7 @@ import ManagerSignUp from "./pages/managerSignup"
 import Faq from "./pages/faq"
 import ContactPage from "./pages/contactPage"
 import DashBoardPage from "./pages/dashboard"
+import GuestPage from "./pages/guestPage"
 //components
 
 
@@ -32,6 +33,7 @@ class App extends React.Component {
         <Route exact path="/faq" component={Faq} />
         <Route exact path="/contact" component={ContactPage} />
         <Route exact path="/dashboard" component={DashBoardPage} />
+        <Route exact path="/guest" component={GuestPage} />
         <Redirect to="/404Error"/>
       </Switch>
     </Router>

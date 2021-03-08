@@ -33,6 +33,9 @@ class SiderMenu extends React.Component{
         if(e.key==="gotomansignup"){
           this.props.history.push("/managersignup")
         }
+        if(e.key==="gotoguest"){
+          this.props.history.push("/guest")
+        }
       };
     
       render() {
@@ -58,11 +61,14 @@ class SiderMenu extends React.Component{
               <Menu.Item key="goHome" icon={<HomeOutlined />}>
                 Home
               </Menu.Item>
-              <SubMenu key="sub1" icon={<CarOutlined />} title="Parking User">
+              <SubMenu key="sub1" icon={<LaptopOutlined />} title="Guest checkout">
+                <Menu.Item key="gotoguest">Guest</Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub2" icon={<CarOutlined />} title="Parking User">
                 <Menu.Item key="gotologin" >Log in</Menu.Item>
                 <Menu.Item key="gotosignup">Register</Menu.Item>
               </SubMenu>
-              <SubMenu key="sub2" icon={<LaptopOutlined />} title="Lot Manager">
+              <SubMenu key="sub3" icon={<LaptopOutlined />} title="Lot Manager">
                 <Menu.Item key="gotomanlogin">Log in</Menu.Item>
                 <Menu.Item key="gotomansignup">Register</Menu.Item>
               </SubMenu>
