@@ -50,5 +50,5 @@ res = {
 - DELETE pass
 
 - GET parking history for user
-
+- POST User purchasing a pass
 - POST Check user has pass, add to user history, return access info
