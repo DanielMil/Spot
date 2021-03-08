@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Input, InputNumber, Button, Space} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import axios from 'axios'
-
+import { withRouter } from "react-router";
 
 class GuestInput extends React.Component{
     handleSubmit = e => {
@@ -71,4 +71,4 @@ class GuestInput extends React.Component{
 }
 
 
-export default GuestInput; 
+export default withRouter(GuestInput); 
