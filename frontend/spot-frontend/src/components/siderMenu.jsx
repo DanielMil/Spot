@@ -2,7 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { CarOutlined, LaptopOutlined, HomeOutlined, CustomerServiceOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
-import { Redirect, withRouter } from 'react-router-dom';
+import { withRouter } from 'react-router-dom';
 
 const { SubMenu } = Menu;
 const {  Sider } = Layout;

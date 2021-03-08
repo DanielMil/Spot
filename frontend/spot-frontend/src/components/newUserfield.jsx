@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, InputNumber, Button, Space} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import axios from 'axios';
+import { withRouter } from "react-router";
 
 
 
@@ -121,4 +122,4 @@ class NewUserField extends React.Component{
 }
 
 
-export default NewUserField; 
+export default withRouter(NewUserField); 

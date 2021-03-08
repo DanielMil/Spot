@@ -2,6 +2,7 @@ import React from 'react';
 import { Layout } from 'antd';
 import { ReactComponent as Logo } from '../images/logo.svg';
 import { Typography } from 'antd';
+import { withRouter } from "react-router";
 
 
 
@@ -28,4 +29,4 @@ class SiteHeader extends React.Component{
 }
 
 
-export default SiteHeader; 
+export default withRouter(SiteHeader); 

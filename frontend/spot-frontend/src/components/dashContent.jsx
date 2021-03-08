@@ -1,6 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
+import { withRouter } from "react-router";
+
 
 class DashContent extends React.Component{
     state = {};
@@ -29,4 +31,4 @@ class DashContent extends React.Component{
 }
 
 
-export default DashContent; 
+export default withRouter(DashContent); 

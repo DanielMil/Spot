@@ -2,6 +2,7 @@ import React from 'react';
 import { Form, Input, InputNumber, Button, Space} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import axios from 'axios'
+import { withRouter } from "react-router";
 
 
 class LogInField extends React.Component{
@@ -12,7 +13,8 @@ class LogInField extends React.Component{
 
       }
       console.log(data);
-
+      
+      console.log(this.props.history)
       axios.post('login', data).then(
           res => {
               localStorage.setItem('token', res.data.token);
@@ -94,4 +96,4 @@ class LogInField extends React.Component{
 }
 
 
-export default LogInField; 
+export default withRouter(LogInField); 

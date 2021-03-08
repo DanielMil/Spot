@@ -2,6 +2,8 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
 import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
+import { withRouter } from "react-router";
+
 //pages
 import HomePage from "./pages/homePage"
 import PageNotFound from "./pages/pageNotfound"
@@ -38,5 +40,5 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);
 
