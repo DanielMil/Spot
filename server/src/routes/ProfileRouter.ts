@@ -30,7 +30,8 @@ router.post(
     '/register',
     async (req: Request, res: Response): Promise<any> => {
         const { email, password, firstName, lastName, isOwner } = req.body;
-        if (!email || !password || !firstName || !lastName || isOwner === undefined) return res.redirect('/redirect/missingFieldError');
+        if (!email || !password || !firstName || !lastName || isOwner === undefined)
+            return res.redirect('/redirect/missingFieldError');
         if (!validateEmailPattern(email)) return res.redirect('/redirect/invalidEmailPattern');
         try {
             const hashedPassword: string = await getHashedPassword(password);

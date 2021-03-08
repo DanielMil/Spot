@@ -8,6 +8,4 @@ import { InfoObject } from '../models/Interfaces';
 
 const router: Router = Router();
 
-
-
 export const historyRouter: Router = router;

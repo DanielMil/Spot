@@ -32,23 +32,28 @@ res = {
 -> Open with rate or pass access granted
 
 // Endpoints
+/car
 - GET all cars from User
 - POST register new car for User
 - PUT update car info
 - DELETE car from user
 
+/lot
 - GET all registered lots
 - GET single lot info by lot id
-- GET all lots from a user
+- GET all lots from an owner
 - POST new lot 
 - PUT update single lot info
-- DELETE single lot
 
+/pass
+- POST User purchasing a pass
 - POST new pass for given lot
 - GET all passes for a user
 - PUT update pass
-- DELETE pass
 
+/history
 - GET parking history for user
-- POST User purchasing a pass
-- POST Check user has pass, add to user history, return access info
+
+/controller
+- POST Check user has pass, update lot info, return access info
+- POST User leaves lot, update lot info, add to user history
