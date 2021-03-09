@@ -54,6 +54,6 @@ res = {
 /history
 - GET parking history for user
 
-/controller
+/embedded
 - POST Check user has pass, update lot info, return access info
 - POST User leaves lot, update lot info, add to user history
