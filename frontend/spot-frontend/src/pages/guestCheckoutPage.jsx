@@ -6,10 +6,10 @@ import { Layout } from 'antd';
 //components
 import SiderMenu from '../components/siderMenu';
 import SiteHeader from '../components/siteHeader';
-import GuestInput from '../components/guestInput';
+import GuestCheckout from '../components/guestCheckout';
 
 const { Footer, Content } = Layout;
-const GuestPage =() => {
+const GuestCheckoutPage =() => {
 
     return (
         <Layout>
@@ -19,11 +19,11 @@ const GuestPage =() => {
             <Layout>    
                     <SiderMenu />
                 <Layout>
-                    <GuestInput/>
+                    <GuestCheckout/>
                 </Layout>
             </Layout>
         </Layout>
     );
 
 };
-export default GuestPage;
+export default GuestCheckoutPage;

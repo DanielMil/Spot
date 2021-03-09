@@ -1,6 +1,6 @@
 import React from 'react';
 import { Layout } from 'antd';
-import { CarOutlined, LaptopOutlined, HomeOutlined, CustomerServiceOutlined } from '@ant-design/icons';
+import { CarOutlined, LaptopOutlined, HomeOutlined, CustomerServiceOutlined, LoginOutlined } from '@ant-design/icons';
 import { Menu } from 'antd';
 import { withRouter } from 'react-router-dom';
 
@@ -61,7 +61,7 @@ class SiderMenu extends React.Component{
               <Menu.Item key="goHome" icon={<HomeOutlined />}>
                 Home
               </Menu.Item>
-              <SubMenu key="sub1" icon={<LaptopOutlined />} title="Guest checkout">
+              <SubMenu key="sub1" icon={<LoginOutlined />} title="Guest checkout">
                 <Menu.Item key="gotoguest">Guest</Menu.Item>
               </SubMenu>
               <SubMenu key="sub2" icon={<CarOutlined />} title="Parking User">

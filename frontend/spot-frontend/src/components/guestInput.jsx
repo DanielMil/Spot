@@ -1,7 +1,5 @@
 import React from 'react';
-import { Form, Input, InputNumber, Button, Space} from 'antd';
-import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import axios from 'axios'
+import { Form, Input, Button} from 'antd';
 import { withRouter } from "react-router";
 
 class GuestInput extends React.Component{
@@ -12,7 +10,7 @@ class GuestInput extends React.Component{
       }
       console.log(data);
 
-      this.context.history.push("/dashboard")
+      this.props.history.push("/guestcheckout")
 
     //   axios.post('login', data).then(
     //       res => {
@@ -45,8 +43,6 @@ class GuestInput extends React.Component{
         
         return (
             <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
-
-{/* EMAIL Field*/}
                 <Form.Item
                     name={['plate']}
                     label="Plate"
