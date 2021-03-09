@@ -7,7 +7,8 @@ const router: Router = Router();
 router.post(
     '/',
     async (req: Request, res: Response): Promise<any> => {
-        const { make, model, plateNumber, userId } = req.body;
+        let { make, model, plateNumber, userId } = req.body;
+        plateNumber = plateNumber.replace(/\s/g,'');
         try {
             const car: CarModel = new CarModel({
                 make,
@@ -20,7 +21,7 @@ router.post(
             console.log(err);
             sendResponse('Error creating new car.', 500, res);
         }
-        sendResponse('Successfully created new car', 200, res);
+        sendResponse('Successfully created new car.', 200, res);
     },
 );
 

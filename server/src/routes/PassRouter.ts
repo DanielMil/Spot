@@ -24,7 +24,7 @@ router.post(
             console.log(err);
             sendResponse('Error creating new pass.', 500, res);
         }
-        sendResponse('Successfully created new pass', 200, res);
+        sendResponse('Successfully created new pass.', 200, res);
     },
 );
 

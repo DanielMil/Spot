@@ -41,7 +41,6 @@ export const userHistoryInit = async (): Promise<any> => {
             },
             timestamp_out: {
                 type: Sequelize.DataTypes.DATE,
-                allowNull: false,
             },
         },
         {

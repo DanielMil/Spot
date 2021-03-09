@@ -1,11 +1,20 @@
 import { Router, Request, Response } from 'express';
-import passport from 'passport';
-import { NextFunction } from 'connect';
-import { UserModel } from '../models/User';
-import { ensureAuthenticated } from '../utils/passport';
-import { sendResponse, getHashedPassword, getToken, validateEmailPattern, getInfoObject } from '../utils/APIUtils';
-import { InfoObject } from '../models/Interfaces';
+import { send } from 'process';
+import app from '..';
+import { UserHistoryModel } from '../models/UserHistory';
+import { sendResponse } from '../utils/APIUtils';
 
 const router: Router = Router();
+
+router.get('/:id', async (req: Request, res: Response) => {
+    const id = req.params.id;
+    try {
+        const resObj = await UserHistoryModel.findAll({ where: { user_id: id } });
+        sendResponse(resObj, 200, res);
+    } catch (err) {
+        console.log(err);
+        sendResponse(err, 500, res);
+    }
+});
 
 export const historyRouter: Router = router;
