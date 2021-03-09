@@ -8,8 +8,9 @@ import { sendResponse } from '../utils/APIUtils';
 const router: Router = Router();
 
 router.post('/enter', async (req: Request, res: Response) => {
-    let { plateNumber, lotId } = req.body;
-    plateNumber = plateNumber.replace(/\s/g,'');
+    const { lotId } = req.body;
+    let { plateNumber } = req.body;
+    plateNumber = plateNumber.replace(/\s/g, '');
     const returnObj: any = {};
     try {
         // Check user having a pass
@@ -17,11 +18,11 @@ router.post('/enter', async (req: Request, res: Response) => {
         const car = await CarModel.findOne({ where: { plate_number: plateNumber } });
         console.log(car);
         const userId = car?.user_id;
-        if (!car) sendResponse("Invalid plate.", 404, res);
+        if (!car) sendResponse('Invalid plate.', 404, res);
         if (userId !== null && lot !== null) {
             const count = await UserPassesModel.count({ where: { user_id: userId, pass_id: lotId } });
             if (count === 0) {
-                // No pass 
+                // No pass
                 returnObj['access_granted'] = false;
                 returnObj['rate'] = lot.rate;
             } else {
@@ -31,7 +32,12 @@ router.post('/enter', async (req: Request, res: Response) => {
         }
         // Update history
         const now = Date.now();
-        const history = await UserHistoryModel.create({ lot_id: lotId, user_id: userId, timestamp_in: now, timestamp_out: now });
+        await UserHistoryModel.create({
+            lot_id: lotId,
+            user_id: userId,
+            timestamp_in: now,
+            timestamp_out: now,
+        });
         // Update lot info
         let capacity = lot?.curr_capacity;
         if (capacity !== undefined) capacity -= 1;
@@ -44,8 +50,9 @@ router.post('/enter', async (req: Request, res: Response) => {
 });
 
 router.post('/exit', async (req: Request, res: Response) => {
-    let { plateNumber, lotId } = req.body;
-    plateNumber = plateNumber.replace(/\s/g,'');
+    const { lotId } = req.body;
+    let { plateNumber } = req.body;
+    plateNumber = plateNumber.replace(/\s/g, '');
     try {
         const lot = await ParkingLotModel.findOne({ where: { id: lotId } });
         let capacity = lot?.curr_capacity;

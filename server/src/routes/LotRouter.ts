@@ -71,7 +71,6 @@ router.get(
     },
 );
 
-
 // Updates a car's make, model or plate number by plate number.
 router.put(
     '/',
@@ -79,14 +78,14 @@ router.put(
         const { ownerId, maxCapacity, rate, address, allowablePassLevel, passId, lotId } = req.body;
         try {
             await ParkingLotModel.update(
-                { 
+                {
                     owner_id: ownerId,
                     max_capacity: maxCapacity,
                     curr_capacity: maxCapacity,
                     rate: rate,
                     address: address,
                     allowable_pass_level: allowablePassLevel,
-                    pass_id: passId, 
+                    pass_id: passId,
                 },
                 { where: { id: lotId } },
             );

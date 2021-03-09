@@ -1,6 +1,4 @@
 import { Router, Request, Response } from 'express';
-import { send } from 'process';
-import app from '..';
 import { UserHistoryModel } from '../models/UserHistory';
 import { sendResponse } from '../utils/APIUtils';
 

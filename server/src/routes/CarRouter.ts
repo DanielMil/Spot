@@ -7,8 +7,9 @@ const router: Router = Router();
 router.post(
     '/',
     async (req: Request, res: Response): Promise<any> => {
-        let { make, model, plateNumber, userId } = req.body;
-        plateNumber = plateNumber.replace(/\s/g,'');
+        const { make, model, userId } = req.body;
+        let { plateNumber } = req.body;
+        plateNumber = plateNumber.replace(/\s/g, '');
         try {
             const car: CarModel = new CarModel({
                 make,
