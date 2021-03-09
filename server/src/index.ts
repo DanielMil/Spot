@@ -1,6 +1,11 @@
 import express, { NextFunction } from 'express';
 import * as bodyParser from 'body-parser';
 import { profileRouter } from './routes/ProfileRouter';
+import { carRouter } from './routes/CarRouter';
+import { passRouter } from './routes/PassRouter';
+import { lotRouter } from './routes/LotRouter';
+import { historyRouter } from './routes/HistoryRouter';
+import { embeddedRouter } from './routes/EmbeddedRouter';
 import dotenv from 'dotenv';
 import passport = require('passport');
 import { configurePassport } from './utils/passport';
@@ -101,6 +106,11 @@ app.use(
 app.use('/auth', profileRouter);
 app.use('/auth/password', passwordRouter);
 app.use('/redirect/', redirectRouter);
+app.use('/car', carRouter);
+app.use('/lot', lotRouter);
+app.use('/pass', passRouter);
+app.use('/history', historyRouter);
+app.use('/embedded', embeddedRouter);
 
 // For production
 app.use(express.static(path.join(__dirname, '../../build_client/')));

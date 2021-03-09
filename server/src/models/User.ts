@@ -7,6 +7,7 @@ export class UserModel extends Sequelize.Model {
     public lastName!: string;
     public email!: string;
     public password!: string;
+    public isOwner!: boolean;
     public resetPasswordToken!: string | undefined;
     public resetPasswordExpiration!: Date | undefined;
     public readonly createdAt!: Date;
@@ -36,6 +37,10 @@ export const userInit = async (): Promise<any> => {
             },
             password: {
                 type: new Sequelize.DataTypes.STRING(128),
+                allowNull: false,
+            },
+            isOwner: {
+                type: Sequelize.DataTypes.BOOLEAN,
                 allowNull: false,
             },
             resetPasswordToken: {

@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken';
 import { MailResponseObject } from '../models/MailInterfaces';
 
 export function sendResponse(
-    info: string | InfoObject | Express.User | MailResponseObject | number,
+    info: string | InfoObject | Express.User | MailResponseObject | number | any,
     statusCode: number,
     res: Response,
 ): void {
