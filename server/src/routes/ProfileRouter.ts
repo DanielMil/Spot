@@ -29,8 +29,9 @@ router.post('/login', (req: Request, res: Response, next: NextFunction): void =>
 router.post(
     '/register',
     async (req: Request, res: Response): Promise<any> => {
-        const { email, password, firstName, lastName } = req.body;
-        if (!email || !password || !firstName || !lastName) return res.redirect('/redirect/missingFieldError');
+        const { email, password, firstName, lastName, isOwner } = req.body;
+        if (!email || !password || !firstName || !lastName || isOwner === undefined)
+            return res.redirect('/redirect/missingFieldError');
         if (!validateEmailPattern(email)) return res.redirect('/redirect/invalidEmailPattern');
         try {
             const hashedPassword: string = await getHashedPassword(password);
@@ -39,6 +40,7 @@ router.post(
                 password: hashedPassword,
                 firstName,
                 lastName,
+                isOwner: isOwner,
             });
             await newUser.save();
             sendResponse('Successfully created new user.', 200, res);
