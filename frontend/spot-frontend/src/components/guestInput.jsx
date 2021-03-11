@@ -10,7 +10,7 @@ class GuestInput extends React.Component{
       }
       console.log(data);
 
-      this.props.history.push("/guestcheckout")
+      this.props.history.push("/guestcheckout");
 
     //   axios.post('login', data).then(
     //       res => {
