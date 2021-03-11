@@ -16,10 +16,8 @@ import ContactPage from "./pages/contactPage"
 import DashBoardPage from "./pages/dashboard"
 import GuestPage from "./pages/guestPage"
 import GuestCheckoutPage from './pages/guestCheckoutPage';
+import PaymentPage from './pages/paymentPage';
 //components
-
-
-
 
 
 class App extends React.Component {
@@ -38,6 +36,7 @@ class App extends React.Component {
         <Route exact path="/dashboard" component={DashBoardPage} />
         <Route exact path="/guest" component={GuestPage} />
         <Route exact path="/guestcheckout" component={GuestCheckoutPage} />
+        <Route exact path="/payment" component={PaymentPage} />
         <Redirect to="/404Error"/>
       </Switch>
     </Router>

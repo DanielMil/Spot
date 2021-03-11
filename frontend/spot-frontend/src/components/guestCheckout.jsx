@@ -3,9 +3,6 @@ import { Table, Space } from 'antd';
 import { withRouter } from "react-router";
 
 class GuestCheckout extends React.Component{
-    payParking(user) {
-        console.log(user);
-    }
     
     render(){
 
@@ -30,7 +27,10 @@ class GuestCheckout extends React.Component{
               key: 'action',
               render: (text, record) => (
                 <Space size="middle">
-                  <a onclick={this.payParking(record.name)}>Pay</a>
+                  <a data-id={record.name} onClick={() => { this.props.history.push({
+                                                            pathname: '/payment',
+                                                            data: record.name
+                                                          }) }}>{record.name}</a>
                 </Space>
               ),
             },
