@@ -61,9 +61,9 @@ class SiderMenu extends React.Component{
               <Menu.Item key="goHome" icon={<HomeOutlined />}>
                 Home
               </Menu.Item>
-              <SubMenu key="sub1" icon={<LoginOutlined />} title="Guest checkout">
-                <Menu.Item key="gotoguest">Guest</Menu.Item>
-              </SubMenu>
+              <Menu.Item key="gotoguest" icon={<LoginOutlined />}>
+                Guest Checkout
+              </Menu.Item>
               <SubMenu key="sub2" icon={<CarOutlined />} title="Parking User">
                 <Menu.Item key="gotologin" >Log in</Menu.Item>
                 <Menu.Item key="gotosignup">Register</Menu.Item>

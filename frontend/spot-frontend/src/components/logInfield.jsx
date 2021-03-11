@@ -11,7 +11,7 @@ class LogInField extends React.Component{
           email : this.email,
           pwd : this.pass
 
-      }
+    }
       console.log(data);
       
       console.log(this.props.history)
