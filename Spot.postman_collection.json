@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "4fc36987-ff56-43c6-9557-fe4c712619c6",
+		"name": "Spot",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Pass",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\": \"229.99\",\n    \"clearanceLevel\": 3,\n    \"numAvailable\": 200,\n    \"expiration\": \"2021-03-30\",\n    \"acquisition\": \"2021-03-08\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/pass/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"pass",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Purchase Pass",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"userId\": 2,\n    \"passId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/pass/purchase",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"pass",
+						"purchase"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Passes for User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/pass/1",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"pass",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Pass",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"passId\": 1, \n    \"price\": \"229.99\",\n    \"clearanceLevel\": 2,\n    \"numAvailable\": 200,\n    \"expiration\": \"2021-03-30\",\n    \"acquisition\": \"2021-03-08\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/pass/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"pass",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Lot",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ownerId\": 2,\n    \"maxCapacity\": 200,\n    \"rate\": 4.99,\n    \"address\": \"44 Sunshine Lane\",\n    \"allowablePassLevel\": 3,\n    \"passId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/lot/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"lot",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Lot",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/lot/all",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"lot",
+						"all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Lot",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"ownerId\": 2,\n    \"maxCapacity\": 100,\n    \"rate\": 8.99,\n    \"address\": \"44 Sunshine Lane\",\n    \"allowablePassLevel\": 3,\n    \"passId\": 1,\n    \"lotId\": 5\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/lot/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"lot",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Embedded Enter",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"plateNumber\": \"ABCD EFG\",\n    \"lotId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/embedded/enter",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"embedded",
+						"enter"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Car",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"make\": \"Audi\",\n    \"model\": \"A7\",\n    \"plateNumber\": \"ABCD EFG\",\n    \"userId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/car/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"car",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Embedded Exit",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"plateNumber\": \"ABCD EFG\",\n    \"lotId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/embedded/exit",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"embedded",
+						"exit"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
