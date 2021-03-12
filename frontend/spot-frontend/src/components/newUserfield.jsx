@@ -9,26 +9,21 @@ import { withRouter } from "react-router";
 class NewUserField extends React.Component{
     
     handleSubmit = e => {
-        const data = {
+        axios.post('/register', {
             first_name : this.firstname,
             last_name : this.lastname,
             email : this.email,
-            pwd : this.pass
-
-        }
-        console.log(data);
-
-        axios.post('signup', data).then(
-            res => {
-                localStorage.setItem('token', res.data.token);
-                this.props.history.push("/login")
-            }
-        ).catch(
-            err => {
-                console.log(err);
-            }
-        )
+            pwd : this.pass,
+            isOwner: false
+          })
+          .then(function (response) {
+            console.log(response);
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
     };
+    
     render(){
 
         const layout = {
