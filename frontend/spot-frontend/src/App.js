@@ -13,8 +13,6 @@ import ManagerLogIn from "./pages/managerLogin"
 import ManagerSignUp from "./pages/managerSignup"
 import Faq from "./pages/faq"
 import ContactPage from "./pages/contactPage"
-import GuestPage from "./pages/guestPage"
-import GuestCheckoutPage from './pages/guestCheckoutPage';
 import PaymentPage from './pages/paymentPage';
 import UserPassManagement from './pages/userPassmanagement'
 import UserVehicleManagement from './pages/userVehiclemanagement'
@@ -42,8 +40,6 @@ class App extends React.Component {
         <Route exact path="/managerlogin" component={ManagerLogIn} />
         <Route exact path="/faq" component={Faq} />
         <Route exact path="/contact" component={ContactPage} />
-        <Route exact path="/guest" component={GuestPage} />
-        <Route exact path="/guestcheckout" component={GuestCheckoutPage} />
         <Route exact path="/payment" component={PaymentPage} />
         <Route exact path="/userdashboard" component={UserDashBoardPage} />
         <Route exact path="/uservehiclemanagement" component={UserVehicleManagement} />
