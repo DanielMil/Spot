@@ -20,6 +20,10 @@ import UserPassManagement from './pages/userPassmanagement'
 import UserVehicleManagement from './pages/userVehiclemanagement'
 import UserServicesManagement from './pages/userServicesmanagement'
 import UserDashBoardPage from "./pages/userDashboard"
+import ManagerDashBoardPage from "./pages/managerDashboard"
+import ManageLots from "./pages/manageLots"
+import ManagerPassManagement from "./pages/managerPassmanagement"
+import ViewLotInfo from "./pages/lotInfo"
 
 
 //components
@@ -45,6 +49,10 @@ class App extends React.Component {
         <Route exact path="/uservehiclemanagement" component={UserVehicleManagement} />
         <Route exact path="/userpassmanagement" component={UserPassManagement} />
         <Route exact path="/userservicesmanagement" component={UserServicesManagement} />
+        <Route exact path="/managerdashboard" component={ManagerDashBoardPage} />
+        <Route exact path="/managelots" component={ManageLots} />
+        <Route exact path="/managerpassmanagement" component={ManagerPassManagement} />
+        <Route exact path="/viewlotinfo" component={ViewLotInfo} />
 
 
         <Redirect to="/404Error"/>

@@ -33,6 +33,17 @@ class UserServices extends React.Component{
               dataIndex: 'email',
               key: 'email',
             },
+            {
+                title: 'Action',
+                key: 'action',
+                render: (text, record) => (
+                  <Space size="middle">
+                    <a data-id={record.name} onClick={() => { }}>
+                        Change
+                     </a>
+                  </Space>
+                ),
+            },
         ];
         const passdata = [
             {

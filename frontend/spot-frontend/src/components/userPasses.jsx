@@ -24,7 +24,7 @@ class UserPasses extends React.Component{
         )**/
     };
     render(){    
-        const renderTitle = (title: string) => (
+        const renderTitle = (title) => (
             <span>
                 {title}
                 <a
@@ -38,7 +38,7 @@ class UserPasses extends React.Component{
             </span>
         );
             
-        const renderItem = (title: string, count: number) => ({
+        const renderItem = (title, count) => ({
             value: title,
             label: (
             <div
@@ -70,7 +70,7 @@ class UserPasses extends React.Component{
             },
         ];
             
-        const Complete: React.FC = () => (
+        const Complete = () => (
             <AutoComplete
                 dropdownClassName="certain-category-search-dropdown"
                 dropdownMatchSelectWidth={500}
