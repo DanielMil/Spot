@@ -1,28 +1,30 @@
 import React from 'react';
 import { Form, Input, InputNumber, Button, Space} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import axios from 'axios';
 import { withRouter } from "react-router";
 
 
-
 class NewUserField extends React.Component{
+    handleSubmit = async (credentials) => {
+
+        let options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                firstName : this.firstname,
+                lastName : this.lastname,
+                email : this.email,
+                password : this.pass,
+                isOwner: false
+            })
+        }
     
-    handleSubmit = e => {
-        axios.post('auth/register/', {
-            firstName : this.firstname,
-            lastName : this.lastname,
-            email : this.email,
-            password : this.pass,
-            isOwner: false
-          })
-          .then(function (response) {
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-    };
+        let response = await fetch('http://localhost:5000/auth/register/', options).then(res => res.json())
+    
+        console.log(response);
+    }
 
     render(){
 
