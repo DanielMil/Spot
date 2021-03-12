@@ -6,25 +6,25 @@ import { withRouter } from "react-router";
 
 
 class LogInField extends React.Component{
-    handleSubmit = e => {
-      const data = {
-          email : this.email,
-          pwd : this.pass
-
-    }
-      console.log(data);
-      
-      console.log(this.props.history)
-      axios.post('login', data).then(
-          res => {
-              localStorage.setItem('token', res.data.token);
-              this.props.history.push("/dashboard")
-          }
-      ).catch(
-          err => {
-              console.log(err);
-          }
-      )
+    handleSubmit = async (credentials) => {
+        let options = {
+            method: "POST",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                email: this.email,
+                password: this.pass,
+            }),
+        };
+    
+        let response = await fetch('http://localhost:5000/auth/login/', options).then((res) => res.json());
+    
+        if (response.status === "Success") {
+            sessionStorage.setItem("session_token", response.info.token);
+        }
+        return response;
     };
     
     render(){

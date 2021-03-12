@@ -5,26 +5,38 @@ import { withRouter } from "react-router";
 
 
 class RegisterLot extends React.Component{
-    handleSubmit = e => {
-        const data = {
-            maxcap : this.maxcap,
-            mincap : this.mincap,
-            rate : this.rate,
-            address : this.address,
-            passlevel : this.passlevel
-        }
+    handleSubmit = async e => {
+        let session_token = sessionStorage.getItem("session_token");
+        let options = {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: session_token,
+            },
+        };
+
+        let response = await fetch('http://localhost:5000/user/', options).then((res) => res.json());
         
-        /*console.log(this.props.history)
-        axios.post('login', data).then(
-            res => {
-                localStorage.setItem('token', res.data.token);
-                this.props.history.push("/dashboard")
-            }
-        ).catch(
-            err => {
-                console.log(err);
-            }
-        )*/
+        options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                owner_id: response.user.id,
+                max_capacity: this.maxcap,
+                curr_capacity: this.mincap,
+                rate: this.rate,
+                address: this.address,
+                allowable_pass_level: this.allowablePassLevel
+            })
+        }
+    
+        response = await fetch('http://localhost:5000/lot/', options).then(res => res.json())
+    
+        console.log(response);
+        
     };
     
     render(){

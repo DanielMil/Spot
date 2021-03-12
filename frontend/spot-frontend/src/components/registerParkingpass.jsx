@@ -8,20 +8,7 @@ import { Form, Space, DatePicker, Button, Divider } from 'antd';
 class ManagerRegisterParkingPass extends React.Component{
     
     handleSubmit = e => {
-        const data = {
-            
-        }
-       
-        /**axios.post('login', data).then(
-            res => {
-                localStorage.setItem('token', res.data.token);
-                this.props.history.push("/dashboard")
-            }
-        ).catch(
-            err => {
-                console.log(err);
-            }
-        )**/
+        
     };
     render(){    
         const renderTitle = (title) => (

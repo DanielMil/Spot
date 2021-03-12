@@ -19,28 +19,47 @@ class UserVehicles extends React.Component{
             } 
         )
     }**/
-    handleRemove = e => {
-        
+    handleRemove = async (id) => {
+      let options = {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+      let response = await fetch('http://localhost:5000/car/' + id, options).then((res) => res.json());
     }
-    handleSubmit = e => {
-        const data = {
+
+    handleSubmit = async (credentials) => {
+      let session_token = sessionStorage.getItem("session_token");
+      let options = {
+          method: "GET",
+          credentials: "include",
+          headers: {
+              "Content-Type": "application/json",
+              Authorization: session_token,
+          },
+      };
+
+      let response = await fetch(URL.user, options).then((res) => res.json());
+
+      options = {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
             make : this.make,
             model : this.model,
-            plate : this.plate
+            plate_number: this.plate,
+            user_id: response.user.id
+          })
+      }
   
-        }
-       
-        /**axios.post('login', data).then(
-            res => {
-                localStorage.setItem('token', res.data.token);
-                this.props.history.push("/dashboard")
-            }
-        ).catch(
-            err => {
-                console.log(err);
-            }
-        )**/
-    };
+      response = await fetch('http://localhost:5000/car/', options).then(res => res.json())
+  
+      console.log(response);
+  }
       
     render(){
         const columns = [
@@ -69,7 +88,7 @@ class UserVehicles extends React.Component{
                 key: 'action',
                 render: (text, Remove) => (
                   <Space size="middle">
-                    <a  onClick={this.handleRemove} >
+                    <a  onClick={this.handleRemove(1)} >
                         Remove
                     </a>
                   </Space>

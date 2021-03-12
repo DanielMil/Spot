@@ -12,17 +12,9 @@ class UserPasses extends React.Component{
            
         }
        
-        /**axios.post('login', data).then(
-            res => {
-                localStorage.setItem('token', res.data.token);
-                this.props.history.push("/dashboard")
-            }
-        ).catch(
-            err => {
-                console.log(err);
-            }
-        )**/
+        
     };
+
     render(){    
         const renderTitle = (title) => (
             <span>
