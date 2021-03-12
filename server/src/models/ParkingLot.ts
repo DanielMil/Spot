@@ -11,7 +11,6 @@ export class ParkingLotModel extends Sequelize.Model {
     public rate!: number;
     public address!: string;
     public allowable_pass_level!: number;
-    public pass_id!: number;
 }
 
 export const parkingLotInit = async (): Promise<any> => {
@@ -50,13 +49,6 @@ export const parkingLotInit = async (): Promise<any> => {
                     key: 'id',
                 },
                 allowNull: false,
-            },
-            pass_id: {
-                type: Sequelize.DataTypes.INTEGER,
-                references: {
-                    model: PassModel,
-                    key: 'id',
-                },
             },
         },
         {

@@ -10,6 +10,7 @@ export class PassModel extends Sequelize.Model {
     public num_purchased!: number;
     public expiration!: Date;
     public acquisition!: Date;
+    public lot_it!: number;
 }
 
 export const passInit = async (): Promise<any> => {
@@ -43,6 +44,14 @@ export const passInit = async (): Promise<any> => {
             acquisition: {
                 type: Sequelize.DataTypes.DATE,
                 allowNull: false,
+            },
+            lot_id: {
+                type: Sequelize.DataTypes.INTEGER,
+                allowNull: false,
+                references: {
+                    model: ParkingLotModel,
+                    key: 'id',
+                },
             },
         },
         {

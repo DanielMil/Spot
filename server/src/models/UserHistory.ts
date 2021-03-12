@@ -9,6 +9,7 @@ export class UserHistoryModel extends Sequelize.Model {
     public user_id!: number;
     public timestamp_in!: Date;
     public timestamp_out!: Date;
+    public has_paid!: boolean;
 }
 
 export const userHistoryInit = async (): Promise<any> => {
@@ -41,6 +42,10 @@ export const userHistoryInit = async (): Promise<any> => {
             },
             timestamp_out: {
                 type: Sequelize.DataTypes.DATE,
+            },
+            has_paid: {
+                type: Sequelize.DataTypes.BOOLEAN,
+                allowNull: false,
             },
         },
         {
