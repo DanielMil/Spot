@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Button , Divider } from 'antd';
 import { withRouter } from "react-router";
 
@@ -7,7 +6,7 @@ import { withRouter } from "react-router";
 class UserDashContent extends React.Component{
     /**state = {};
     componentDidMount(){
-        axios.get('user').then(
+        axios.get('auth/user').then(
             res => {
                 this.setState({
                     user: res.data
@@ -18,6 +17,27 @@ class UserDashContent extends React.Component{
             } 
         )
     }**/
+    state = {
+        loggedin : false
+    }
+    loginCheck = async (credentials) => {
+    
+        let session_token = sessionStorage.getItem("session_token");
+        let options = {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: session_token,
+            },
+        };
+        let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+        if (response.status==="Success"){
+            let loggedin = true
+            this.setState({loggedin})
+        }
+      
+    }
     handleVehicle = e => {
         this.props.history.push("/uservehiclemanagement")
         console.log('here')
@@ -29,7 +49,8 @@ class UserDashContent extends React.Component{
         this.props.history.push("/userservicesmanagement")
     }
     render(){
-        //if (this.state.user){
+        this.loginCheck()
+        if (this.state.loggedin){
             return(
                 <>  
                     
@@ -56,10 +77,10 @@ class UserDashContent extends React.Component{
                     <Divider />
                 </>
             );
-        //}
-        /**return(
+        }
+        return(
             <h2>Log in failed</h2>
-        );**/
+        );
     }
 }
 

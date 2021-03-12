@@ -4,7 +4,7 @@ import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
 import { withRouter } from "react-router";
 
 
-class LogInField extends React.Component{
+class ManagerLogInField extends React.Component{
     handleSubmit = async (credentials) => {
         let options = {
             method: "POST",
@@ -27,7 +27,7 @@ class LogInField extends React.Component{
         
         console.log( response);
         
-        this.props.history.push("/userdashboard")
+        this.props.history.push("/managerdashboard")
     };
     
     render(){
@@ -99,4 +99,4 @@ class LogInField extends React.Component{
 }
 
 
-export default withRouter(LogInField); 
+export default withRouter(ManagerLogInField); 

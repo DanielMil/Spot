@@ -1,6 +1,5 @@
 import React from 'react';
-import { Form, Input, InputNumber, Button, Space} from 'antd';
-import axios from 'axios'
+import { Form, Input, Button} from 'antd';
 import { withRouter } from "react-router";
 
 

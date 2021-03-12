@@ -49,6 +49,7 @@ class App extends React.Component {
         <Route exact path="/managelots" component={ManageLots} />
         <Route exact path="/managerpassmanagement" component={ManagerPassManagement} />
         <Route exact path="/viewlotinfo" component={ViewLotInfo} />
+        
 
 
         <Redirect to="/404Error"/>

@@ -1,7 +1,6 @@
 import React from 'react';
 import { Form, Input, Button} from 'antd';
 import { EyeInvisibleOutlined, EyeTwoTone } from '@ant-design/icons';
-import axios from 'axios';
 import { withRouter } from "react-router";
 
 
@@ -25,7 +24,11 @@ class NewManagerField extends React.Component{
     
         let response = await fetch('http://localhost:5000/auth/register/', options).then(res => res.json())
     
-        console.log(response);
+        console.log(response.status);
+        if (response.status==="Success"){
+            this.props.history.push("/managerlogin")
+        }
+        
     }
 
     render(){

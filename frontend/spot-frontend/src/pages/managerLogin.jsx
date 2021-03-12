@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 //components
 import SiderMenu from '../components/siderMenu';
 import SiteHeader from '../components/siteHeader';
-import LogInField from "../components/logInfield";
+import ManagerLogInField from "../components/managerloginfield";
 
 const { Footer, Content } = Layout;
 const ManagerLogIn =() => {
@@ -21,7 +21,7 @@ const ManagerLogIn =() => {
                 <Layout>
                     <Content style={{ margin: '24px 16px 0' }}>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 768 }}>
-                            <LogInField/>
+                            <ManagerLogInField/>
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Copyright DAN THE MAN</Footer>

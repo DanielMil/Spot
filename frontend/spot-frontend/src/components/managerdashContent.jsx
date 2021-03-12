@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { Button , Divider } from 'antd';
 import { withRouter } from "react-router";
 

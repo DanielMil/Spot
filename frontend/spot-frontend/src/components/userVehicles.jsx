@@ -1,24 +1,10 @@
 import React from 'react';
 import { withRouter } from "react-router";
-import axios from 'axios';
 import { Table, Space } from 'antd';
 import { Form, Input, Button, Radio } from 'antd'
 
 
 class UserVehicles extends React.Component{
-    /**state = {};
-    componentDidMount(){
-        axios.get('user').then(
-            res => {
-                this.setState({
-                    user: res.data
-                });
-            },
-            err => {
-                console.log(err);
-            } 
-        )
-    }**/
     handleRemove = async (id) => {
       let options = {
         method: "DELETE",
@@ -41,7 +27,7 @@ class UserVehicles extends React.Component{
           },
       };
 
-      let response = await fetch(URL.user, options).then((res) => res.json());
+      let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
 
       options = {
           method: 'POST',
