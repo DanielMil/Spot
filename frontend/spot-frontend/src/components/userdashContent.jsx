@@ -32,6 +32,14 @@ class UserDashContent extends React.Component{
         //if (this.state.user){
             return(
                 <>  
+                    
+                    <p>
+                        Pay fees. Change your email, password, or view or cancel your active parking passes
+                    </p>
+                    <Button type="primary"  size="large" shape="round" onClick={this.handleServices}>
+                        Manage Services
+                    </Button>  
+                    <Divider />             
                     <p>
                         View your currently registered vehicle or register a new one
                     </p>
@@ -46,12 +54,6 @@ class UserDashContent extends React.Component{
                         Add new pass
                     </Button>
                     <Divider />
-                    <p>
-                        Change your email, password, or view or cancel your active parking passes
-                    </p>
-                    <Button type="primary"  size="large" shape="round" onClick={this.handleServices}>
-                        Manage Services
-                    </Button>
                 </>
             );
         //}

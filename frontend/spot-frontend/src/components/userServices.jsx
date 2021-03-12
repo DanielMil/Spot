@@ -43,7 +43,7 @@ class UserServices extends React.Component{
                      </a>
                   </Space>
                 ),
-            },
+            }
         ];
         const passdata = [
             {
@@ -108,10 +108,33 @@ class UserServices extends React.Component{
               dataIndex: 'timeout',
               key: 'timeout',
             },
+            {
+                title: 'Action',
+                key: 'action',
+                render: (text, record) => (
+                  <Space size="middle">
+                    <a data-id={record.name} onClick={() => { this.props.history.push({
+                                                            pathname: '/payment',
+                                                            data: record.name
+                                                          }) }}>
+                        Pay
+                     </a>
+                  </Space>
+                ),
+            }
         ];
         return(
             <div className="site-card-wrapper">
                 <Space direction="vertical" size='large'>
+                    <Row gutter={400}>
+                    <Col span={2}/>
+                        <Col span= {20}>
+                            <Card title="Parking History" bordered={false}>
+                            <Table dataSource={historydata} columns={historycolumns} />
+                            </Card>
+                        </Col>
+                        <Col span={2} />
+                    </Row>
                     <Row gutter={400}>  
                         <Col span={20}/>
                         <Col span= {20} >
@@ -126,15 +149,6 @@ class UserServices extends React.Component{
                         <Col span= {20}>
                             <Card title="Active Passes" bordered={false}>
                                 <Table dataSource={passdata} columns={passcolumns} />
-                            </Card>
-                        </Col>
-                        <Col span={2} />
-                    </Row>
-                    <Row gutter={400}>
-                    <Col span={2}/>
-                        <Col span= {20}>
-                            <Card title="Parking History" bordered={false}>
-                            <Table dataSource={historydata} columns={historycolumns} />
                             </Card>
                         </Col>
                         <Col span={2} />
