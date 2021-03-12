@@ -19,7 +19,12 @@ const GuestCheckoutPage =() => {
             <Layout>    
                     <SiderMenu />
                 <Layout>
-                    <GuestCheckout/>
+                    <Content style={{ margin: '24px 16px 0' }}>
+                        <div className="site-layout-background" style={{ padding: 24, minHeight: 768 }}>
+                            <GuestCheckout/>
+                        </div>
+                    </Content>
+                    <Footer style={{ textAlign: 'center' }}>Copyright Spot</Footer>
                 </Layout>
             </Layout>
         </Layout>
