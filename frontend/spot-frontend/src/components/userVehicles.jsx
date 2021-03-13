@@ -5,6 +5,7 @@ import { Form, Input, Button, Radio } from 'antd'
 
 
 class UserVehicles extends React.Component{
+
     handleRemove = async (id) => {
       let options = {
         method: "DELETE",
@@ -38,13 +39,37 @@ class UserVehicles extends React.Component{
             make : this.make,
             model : this.model,
             plate_number: this.plate,
-            user_id: response.user.id
+            user_id: response.info.id
           })
       }
   
       response = await fetch('http://localhost:5000/car/', options).then(res => res.json())
-  
+      this.fetchCars();
       console.log(response);
+  }
+
+  fetchCars = async () => {
+    let session_token = sessionStorage.getItem("session_token");
+    let options = {
+        method: "GET",
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: session_token,
+        },
+    };
+
+    let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+
+    options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    };
+
+    response = await fetch('http://localhost:5000/car/' + response.info.id, options).then((res) => res.json());
+    return response;
   }
       
     render(){
@@ -74,35 +99,25 @@ class UserVehicles extends React.Component{
                 key: 'action',
                 render: (text, Remove) => (
                   <Space size="middle">
-                    <a  onClick={this.handleRemove(1)} >
+                    <a  onClick={this.handleRemove(Remove.id)} >
                         Remove
                     </a>
                   </Space>
                 ),
             },
           ];
-          
-          const data = [
-            {
-              id: '1',
-              make: 'John Brown',
-              model: 32,
-              plate: 'New York No. 1 Lake Park',
-            },
-            {
-              id: '2',
-              make: 'Jim Green',
-              model: 42,
-              plate: 'London No. 1 Lake Park',
-            },
-            {
-              id: '3',
-              make: 'Joe Black',
-              model: 32,
-              plate: 'Sidney No. 1 Lake Park',
-            },
-            
-          ];
+
+          let session_token = sessionStorage.getItem("session_token");
+          let options = {
+              method: "GET",
+              credentials: "include",
+              headers: {
+                  "Content-Type": "application/json",
+                  Authorization: session_token,
+              },
+          };
+
+          this.data = this.fetchCars();
         
           const formItemLayout = {
          
@@ -111,9 +126,33 @@ class UserVehicles extends React.Component{
           }
       
         const buttonItemLayout =
+        {
+          wrapperCol: { span: 14, offset: 4 },
+        }
+
+        const data = [
           {
-                wrapperCol: { span: 14, offset: 4 },
-              }
+            key: '1',
+            name: 'John Brown',
+            age: 32,
+            address: 'New York No. 1 Lake Park',
+            tags: ['nice', 'developer'],
+          },
+          {
+            key: '2',
+            name: 'Jim Green',
+            age: 42,
+            address: 'London No. 1 Lake Park',
+            tags: ['loser'],
+          },
+          {
+            key: '3',
+            name: 'Joe Black',
+            age: 32,
+            address: 'Sidney No. 1 Lake Park',
+            tags: ['cool', 'teacher'],
+          },
+        ];
            
         return(
             <>    
@@ -130,7 +169,7 @@ class UserVehicles extends React.Component{
                         <Input placeholder="Registration of Vehicle" />
                     </Form.Item>
                     <Form.Item {...buttonItemLayout}>
-                        <Button type="primary" onClick={this.handleSubmit}>Submit</Button>
+                        <Button type="primary" onClick={() => { this.handleSubmit() }}>Submit</Button>
                     </Form.Item>
                 </Form>
             </>

@@ -24,7 +24,7 @@ class RegisterLot extends React.Component{
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                owner_id: response.user.id,
+                owner_id: response.info.id,
                 max_capacity: this.maxcap,
                 curr_capacity: this.mincap,
                 rate: this.rate,
