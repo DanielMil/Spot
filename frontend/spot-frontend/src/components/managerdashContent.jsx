@@ -4,19 +4,29 @@ import { withRouter } from "react-router";
 
 
 class ManagerDashContent extends React.Component{
-    /**state = {};
-    componentDidMount(){
-        axios.get('user').then(
-            res => {
-                this.setState({
-                    user: res.data
-                });
+
+    state = {
+        loggedin : false
+    }
+    loginCheck = async (credentials) => {
+    
+        let session_token = sessionStorage.getItem("session_token");
+        let options = {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: session_token,
             },
-            err => {
-                console.log(err);
-            } 
-        )
-    }**/
+        };
+        let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+        if (response.status==="Success"){
+            let loggedin = true
+            this.setState({loggedin})
+        }
+      
+    }
+
     handleLotreg = e => {
         this.props.history.push("/managelots")
     }
@@ -27,7 +37,8 @@ class ManagerDashContent extends React.Component{
         this.props.history.push("/viewlotinfo")
     }
     render(){
-        //if (this.state.user){
+        this.loginCheck()
+        if(this.state.loggedin){
             return(
                 <>  
                     <p>
@@ -52,10 +63,10 @@ class ManagerDashContent extends React.Component{
                     </Button>
                 </>
             );
-        //}
-        /**return(
+        }
+        return(
             <h2>Log in failed</h2>
-        );**/
+        );
     }
 }
 

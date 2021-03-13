@@ -19,13 +19,11 @@ class ManagerLogInField extends React.Component{
         };
     
         let response = await fetch('http://localhost:5000/auth/login/', options).then((res) => res.json());
-    
+        console.log( response);
         if (response.status === "Success") {
             sessionStorage.setItem("session_token", response.info.token);
 
         }
-        
-        console.log( response);
         
         this.props.history.push("/managerdashboard")
     };
