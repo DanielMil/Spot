@@ -3,6 +3,7 @@ import { withRouter } from "react-router";
 import { Input, AutoComplete } from 'antd';
 import { DollarCircleOutlined } from '@ant-design/icons';
 import { Space, Row, Col, Button } from 'antd';
+import PaymentField from './paymentField';
 
 
 class UserPasses extends React.Component{
@@ -95,6 +96,7 @@ class UserPasses extends React.Component{
                     </Col>
                     <Col span={8} />
                 </Row>
+                <PaymentField />
                 <Row>
                     <Col span={10} />
                     <Col span={8}>

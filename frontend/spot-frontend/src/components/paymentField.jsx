@@ -5,7 +5,6 @@ import Layout from 'antd/lib/layout/layout';
 import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 import {CardElement} from '@stripe/react-stripe-js';
-import { fixControlledValue } from 'antd/lib/input/Input';
 
 class PaymentField extends React.Component{
     handleSubmit = e => {
