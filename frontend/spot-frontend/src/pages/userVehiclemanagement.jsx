@@ -8,7 +8,6 @@ import UserVehicles from "../components/userVehicles";
 import SiderMenu from '../components/siderMenu';
 import SiteHeader from '../components/siteHeader';
 
-const { Footer, Content } = Layout;
 const UserVehicleManagement =() => {
 
     return (

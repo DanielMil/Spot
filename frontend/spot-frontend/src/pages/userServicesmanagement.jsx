@@ -7,7 +7,6 @@ import UserServices from "../components/userServices";
 import SiderMenu from '../components/siderMenu';
 import SiteHeader from '../components/siteHeader';
 
-const { Footer, Content } = Layout;
 const UserServicesManagement =() => {
 
     return (

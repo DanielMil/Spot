@@ -6,7 +6,7 @@ import { Layout } from 'antd';
 //components
 import SiderMenu from '../components/siderMenu';
 import SiteHeader from '../components/siteHeader';
-import UserDashContent from '../components/userdashContent';
+import LotInformation from '../components/lotInformation';
 
 const { Footer, Content } = Layout;
 const ViewLotInfo =() => {
@@ -21,7 +21,7 @@ const ViewLotInfo =() => {
                 <Layout>
                     <Content style={{ margin: '24px 16px 0' }}>
                         <div className="site-layout-background" style={{ padding: 24, minHeight: 768 }}>
-                            ye
+                            <LotInformation />
                         </div>
                     </Content>
                     <Footer style={{ textAlign: 'center' }}>Copyright DAN THE MAN</Footer>

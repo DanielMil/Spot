@@ -8,7 +8,6 @@ import UserPasses from "../components/userPasses";
 import SiderMenu from '../components/siderMenu';
 import SiteHeader from '../components/siteHeader';
 
-const { Footer, Content } = Layout;
 const UserPassManagement =() => {
 
     return (
