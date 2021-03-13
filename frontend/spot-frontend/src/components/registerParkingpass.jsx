@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router";
-import { Input } from 'antd';
+import { Input, InputNumber } from 'antd';
 import { Form, Space, DatePicker, Button, Divider } from 'antd';
 
 

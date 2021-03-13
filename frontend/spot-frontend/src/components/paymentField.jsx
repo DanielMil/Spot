@@ -7,11 +7,6 @@ import {loadStripe} from '@stripe/stripe-js';
 import {CardElement} from '@stripe/react-stripe-js';
 
 class PaymentField extends React.Component{
-    handleSubmit = e => {
-      this.props.history.push("/");
-    };
-    
-    
     render(){
         //open source 
         const CARD_ELEMENT_OPTIONS = {
@@ -35,35 +30,13 @@ class PaymentField extends React.Component{
         //open source dummy key
         const stripePromise = loadStripe('pk_test_TYooMQauvdEDq54NiTphI7jx');
 
-        const data = [
-            'Lot Used:' ,
-            'Lot Rate: ',
-            'Time Entered: ',
-            'Time Left: '
-          ];
-
         return (
             <Layout>
-                <List
-                    size="small"
-                    header={<p>{this.props.location.data}</p>}
-                    footer={<div><b>Total Due:</b></div>}
-                    bordered
-                    dataSource={data}
-                    renderItem={item => <List.Item>{item}</List.Item>}
-                />
-                
                 <Elements stripe={stripePromise}>
                     <label>
                         <CardElement options={CARD_ELEMENT_OPTIONS} />
                     </label>
                 </Elements>
-                
-                <div style={{paddingTop: '25px'}}>
-                    <button style={{float: 'right'}} type="primary" htmlType="submit" onClick={this.handleSubmit}>
-                        Submit
-                    </button>
-                </div>
             </Layout>
         )
     }
