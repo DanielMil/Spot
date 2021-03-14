@@ -5,6 +5,12 @@ import { Form, Input, Button, Radio } from 'antd'
 
 
 class UserVehicles extends React.Component{
+  constructor(props) {
+      super(props)
+      this.state ={
+        filteredData: []
+      }
+  }
 
     handleRemove = async (id) => {
       let options = {
@@ -14,10 +20,11 @@ class UserVehicles extends React.Component{
         }
     };
 
-      let response = await fetch('http://localhost:5000/car/' + id, options).then((res) => res.json());
+      await fetch('http://localhost:5000/car/' + id, options).then((res) => res.json());
+      this.fetchCars();
     }
 
-    handleSubmit = async (credentials) => {
+    handleSubmit = async () => {
       let session_token = sessionStorage.getItem("session_token");
       let options = {
           method: "GET",
@@ -43,9 +50,9 @@ class UserVehicles extends React.Component{
           })
       }
   
-      response = await fetch('http://localhost:5000/car/', options).then(res => res.json())
-      this.fetchCars();
+      response = await fetch('http://localhost:5000/car/', options).then(res => res.json());
       console.log(response);
+      this.fetchCars();
   }
 
   fetchCars = async () => {
@@ -69,7 +76,8 @@ class UserVehicles extends React.Component{
     };
 
     response = await fetch('http://localhost:5000/car/' + response.info.id, options).then((res) => res.json());
-    return response;
+    console.log(response)
+    this.state.filteredData = response.info;
   }
       
     render(){
@@ -107,17 +115,7 @@ class UserVehicles extends React.Component{
             },
           ];
 
-          let session_token = sessionStorage.getItem("session_token");
-          let options = {
-              method: "GET",
-              credentials: "include",
-              headers: {
-                  "Content-Type": "application/json",
-                  Authorization: session_token,
-              },
-          };
-
-          this.data = this.fetchCars();
+          this.fetchCars();
         
           const formItemLayout = {
          
@@ -130,33 +128,13 @@ class UserVehicles extends React.Component{
           wrapperCol: { span: 14, offset: 4 },
         }
 
-        const data = [
-          {
-            key: '1',
-            name: 'John Brown',
-            age: 32,
-            address: 'New York No. 1 Lake Park',
-            tags: ['nice', 'developer'],
-          },
-          {
-            key: '2',
-            name: 'Jim Green',
-            age: 42,
-            address: 'London No. 1 Lake Park',
-            tags: ['loser'],
-          },
-          {
-            key: '3',
-            name: 'Joe Black',
-            age: 32,
-            address: 'Sidney No. 1 Lake Park',
-            tags: ['cool', 'teacher'],
-          },
-        ];
+        let locale = {
+          emptyText: 'Abc',
+        };
            
         return(
             <>    
-                <Table dataSource={data} columns={columns} />
+                <Table dataSource={this.state.filteredData} columns={columns} />
                 <Form {...formItemLayout} layout='horizontal'>
                     
                     <Form.Item label="Make" >
@@ -169,7 +147,7 @@ class UserVehicles extends React.Component{
                         <Input placeholder="Registration of Vehicle" />
                     </Form.Item>
                     <Form.Item {...buttonItemLayout}>
-                        <Button type="primary" onClick={() => { this.handleSubmit() }}>Submit</Button>
+                        <Button type="primary" onClick={async () => { await this.handleSubmit() }}>Submit</Button>
                     </Form.Item>
                 </Form>
             </>

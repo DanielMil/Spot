@@ -9,9 +9,16 @@ const { SubMenu } = Menu;
 const {  Sider } = Layout;
 
 class SiderMenu extends React.Component{
-  state = {
-    loggedin : false
+
+  constructor(props) {
+    super(props)
+    this.state ={
+      loggedin: false
+    }
+
+    this.loginCheck();
   }
+
 loginCheck = async (credentials) => {
 
     let session_token = sessionStorage.getItem("session_token");
@@ -80,10 +87,10 @@ loginCheck = async (credentials) => {
         if(e.key==="gotologout"){
           this.logoutcheck()
         }
+
       };
     
       render() {
-        this.loginCheck()
         if (this.state.loggedin){
           return (
             <Sider

@@ -5,9 +5,15 @@ import { withRouter } from "react-router";
 
 class ManagerDashContent extends React.Component{
 
-    state = {
-        loggedin : false
+    constructor(props) {
+        super(props)
+        this.state ={
+            loggedin: false
+        }
+
+        this.loginCheck();
     }
+
     loginCheck = async (credentials) => {
     
         let session_token = sessionStorage.getItem("session_token");
@@ -37,7 +43,6 @@ class ManagerDashContent extends React.Component{
         this.props.history.push("/viewlotinfo")
     }
     render(){
-        this.loginCheck()
         if(this.state.loggedin){
             return(
                 <>  
