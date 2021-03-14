@@ -8,7 +8,7 @@ const router: Router = Router();
 router.post(
     '/',
     async (req: Request, res: Response): Promise<any> => {
-        const { price, clearanceLevel, numAvailable, expiration, acquisition } = req.body;
+        const { price, clearanceLevel, numAvailable, expiration, acquisition, name } = req.body;
         const initPurchased = 0;
         try {
             const pass: PassModel = new PassModel({
@@ -18,6 +18,7 @@ router.post(
                 num_purchased: initPurchased,
                 expiration,
                 acquisition,
+                name,
             });
             await pass.save();
         } catch (err) {
@@ -80,13 +81,40 @@ router.get(
     },
 );
 
+router.get('/passByName/:passName', 
+    async (req: Request, res: Response): Promise<any> => {
+        const name = req.params.passName;
+        let passes = {};
+        try {
+            passes = await PassModel.findAll({ where: { name: name } });
+        } catch (err) {
+            console.log(err);
+            sendResponse('Error getting passes.', 500, res);
+        }
+        sendResponse(passes, 200, res);
+    },
+);
+
+router.get('/', 
+    async (req: Request, res: Response): Promise<any> => {
+        let passes = {};
+        try {
+            passes = await PassModel.findAll();
+        } catch (err) {
+            console.log(err);
+            sendResponse('Error getting passes.', 500, res);
+        }
+        sendResponse(passes, 200, res);
+    },
+);
+
 router.put(
     '/',
     async (req: Request, res: Response): Promise<any> => {
-        const { price, clearanceLevel, numAvailable, expiration, acquisition, passId } = req.body;
+        const { price, clearanceLevel, numAvailable, expiration, acquisition, passId, name } = req.body;
         try {
             await PassModel.update(
-                { price, clearance_level: clearanceLevel, num_available: numAvailable, expiration, acquisition },
+                { price, clearance_level: clearanceLevel, num_available: numAvailable, expiration, acquisition, name },
                 { where: { id: passId } },
             );
         } catch (err) {
