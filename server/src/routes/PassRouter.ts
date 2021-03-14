@@ -95,6 +95,19 @@ router.get('/passByName/:passName',
     },
 );
 
+router.get('/', 
+    async (req: Request, res: Response): Promise<any> => {
+        let passes = {};
+        try {
+            passes = await PassModel.findAll();
+        } catch (err) {
+            console.log(err);
+            sendResponse('Error getting passes.', 500, res);
+        }
+        sendResponse(passes, 200, res);
+    },
+);
+
 router.put(
     '/',
     async (req: Request, res: Response): Promise<any> => {
