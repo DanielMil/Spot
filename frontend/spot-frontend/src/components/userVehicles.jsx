@@ -10,15 +10,15 @@ class UserVehicles extends React.Component{
       this.state ={
         filteredData: []
       }
+
+      this.fetchCars();
   }
 
     handleRemove = async (id) => {
+      console.log(id);
       let options = {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json"
-        }
-    };
+        method: "DELETE"
+      };
 
       await fetch('http://localhost:5000/car/' + id, options).then((res) => res.json());
       this.fetchCars();
@@ -37,6 +37,9 @@ class UserVehicles extends React.Component{
 
       let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
 
+      
+      console.log(response.info.id, this.plate, this.make, this.model);
+
       options = {
           method: 'POST',
           headers: {
@@ -45,14 +48,13 @@ class UserVehicles extends React.Component{
           body: JSON.stringify({
             make : this.make,
             model : this.model,
-            plate_number: this.plate,
-            user_id: response.info.id
+            plateNumber: this.plate,
+            userId: response.info.id
           })
       }
   
       response = await fetch('http://localhost:5000/car/', options).then(res => res.json());
-      console.log(response);
-      this.fetchCars();
+      await this.fetchCars();
   }
 
   fetchCars = async () => {
@@ -76,8 +78,25 @@ class UserVehicles extends React.Component{
     };
 
     response = await fetch('http://localhost:5000/car/' + response.info.id, options).then((res) => res.json());
-    console.log(response)
+    
+    const dataSource = [
+      {
+        key: '1',
+        make: 'Mike',
+        model: 32,
+        plate_number: '10 Downing Street',
+      },
+      {
+        key: '2',
+        make: 'John',
+        model: 42,
+        plate_number: '10 Downing Street',
+      },
+    ];
+    
     this.state.filteredData = response.info;
+    console.log(this.state.filteredData);
+    this.forceUpdate();
   }
       
     render(){
@@ -99,23 +118,21 @@ class UserVehicles extends React.Component{
             },
             {
               title: 'Plate',
-              key: 'plate',
-              dataIndex: 'plate',
+              key: 'plate_number',
+              dataIndex: 'plate_number',
             },
             {
                 title: 'Action',
                 key: 'action',
                 render: (text, Remove) => (
                   <Space size="middle">
-                    <a  onClick={this.handleRemove(Remove.id)} >
+                    <a  onClick={() => {this.handleRemove(Remove.id)}} >
                         Remove
                     </a>
                   </Space>
                 ),
             },
           ];
-
-          this.fetchCars();
         
           const formItemLayout = {
          
@@ -138,16 +155,16 @@ class UserVehicles extends React.Component{
                 <Form {...formItemLayout} layout='horizontal'>
                     
                     <Form.Item label="Make" >
-                        <Input placeholder="Make of Vehicle" />
+                        <Input onChange={e => this.make = e.target.value} placeholder="Make of Vehicle" />
                     </Form.Item>
                     <Form.Item label="Model">
-                        <Input placeholder="Model of Vehicle" />
+                        <Input onChange={e => this.model = e.target.value} placeholder="Model of Vehicle" />
                     </Form.Item>
                     <Form.Item label="License Plate">
-                        <Input placeholder="Registration of Vehicle" />
+                        <Input onChange={e => this.plate = e.target.value} placeholder="Registration of Vehicle" />
                     </Form.Item>
                     <Form.Item {...buttonItemLayout}>
-                        <Button type="primary" onClick={async () => { await this.handleSubmit() }}>Submit</Button>
+                        <Button type="primary" onClick={() => { this.handleSubmit() }}>Submit</Button>
                     </Form.Item>
                 </Form>
             </>
