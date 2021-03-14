@@ -6,7 +6,7 @@ import { Form, Space, DatePicker, Button, Divider } from 'antd';
 
 class ManagerRegisterParkingPass extends React.Component{
     
-    handleSubmit =async e => {
+    handleSubmit = async () => {
         let options = {
             method: 'POST',
             headers: {
@@ -14,9 +14,8 @@ class ManagerRegisterParkingPass extends React.Component{
             },
             body: JSON.stringify({
                 price: this.price,
-                clearance_level: this.clearancelevel,
-                num_available: this.quantity,
-                num_purchased: 0,
+                clearanceLevel: this.clearancelevel,
+                numAvailable: this.quantity,
                 expiration: this.expDate.format('YYYY-MM-DD'),
                 acquisition: "2020-04-11"
             })
@@ -54,24 +53,24 @@ class ManagerRegisterParkingPass extends React.Component{
                 <h2>
                     Please Enter the parking pass attributes
                 </h2>
+                <Space>
+                    <p>Price</p>
+                    <InputNumber
+                            style={{
+                                width: 200,
+                            }}
+                            min="0"
+                            max="100"
+                            step="0.01"
+                            onChange={value => this.price = value}
+                            stringMode
+                        />  
+                </Space>
+
                 <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
                     <p>
                         Clearance Level
                     </p> 
-
-                    <Space size="middle">
-                    <InputNumber
-                        style={{
-                            width: 200,
-                          }}
-                          defaultValue="1"
-                          min="0"
-                          max="10"
-                          step="0.01"
-                          onChange={e => this.price = e.target.value}
-                          stringMode
-                    />  
-                  </Space>
                     
                     <Form.Item
                         name={['user', 'clearancelevel']}
@@ -84,7 +83,7 @@ class ManagerRegisterParkingPass extends React.Component{
                         ]}
                         
                     >
-                        <Input onChange={e => this.clearancelevel = e.target.value}/>
+                        <InputNumber min={1} max={10} onChange={value => this.clearancelevel = value}/>
                     </Form.Item>
                     <p>
                         Total Quantity Available
@@ -100,9 +99,9 @@ class ManagerRegisterParkingPass extends React.Component{
                         ]}
                         
                     >
-                        <Input onChange={e => this.quantity = e.target.value}/>
+                        <InputNumber min={1} onChange={value => this.quantity = value} />
                     </Form.Item>
-                    <DatePicker onChange={e => this.expDate = e.target.value} placeholder='Expiration Date'/>
+                    <DatePicker onChange={value => this.expDate = value} placeholder='Expiration Date'/>
                     <Divider />
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
                         <Button type="primary" htmlType="submit" onClick={this.handleSubmit}> 

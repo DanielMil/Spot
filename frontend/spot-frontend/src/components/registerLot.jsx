@@ -5,6 +5,27 @@ import { withRouter } from "react-router";
 
 
 class RegisterLot extends React.Component{
+    constructor(props) {
+        super(props)
+        this.state ={
+          passes: []
+        }
+  
+        this.getPasses();
+    }
+
+    getPasses = async () => {
+        let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+    
+        let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
+        this.state.passes = response.info;
+      }
+
     handleSubmit = async e => {
         let session_token = sessionStorage.getItem("session_token");
         let options = {
@@ -38,6 +59,43 @@ class RegisterLot extends React.Component{
         console.log(response);
         
     };
+
+    getOptions() {
+        const renderTitle = (title) => (
+            <span>
+                {title}
+                
+            </span>
+        );
+            
+        const renderItem = (title, count) => ({
+            value: title,
+            label: (
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >  
+                {title}
+                <span>
+                    <DollarCircleOutlined /> {count}
+                </span>
+            </div>
+            ),
+        });
+
+        let options = [
+            {
+            label: renderTitle('passes'),
+            options: [],
+            }
+          ];
+        
+        console.log(this.state.passes)
+        
+        return options;
+    }
     
     render(){
 
@@ -65,48 +123,16 @@ class RegisterLot extends React.Component{
                 dropdownClassName="certain-category-search-dropdown"
                 dropdownMatchSelectWidth={500}
                 style={{ width: 250 }}
-                options={options}
+                options={this.getOptions()}
             >
                 <Input.Search size="large" placeholder="input here" />
             </AutoComplete>
         );
-
-        const renderTitle = (title) => (
-            <span>
-                {title}
-                
-            </span>
-        );
-            
-        const renderItem = (title, count) => ({
-            value: title,
-            label: (
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >  
-                {title}
-                <span>
-                    <DollarCircleOutlined /> {count}
-                </span>
-            </div>
-            ),
-        });
-
-        const options = [
-            {
-            label: renderTitle('Registered Parking Lots'),
-            options: [renderItem('Pearson Intl', 'max'), renderItem('Hospital', 'max')],
-            },
-            
-        ];
         
         return (
             <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
                 <h2>
-                    Select the parking lot you would like to register a new pass to    
+                    Select the pass you would like to register a new parking lot to    
                 </h2>
                 <Complete />
                 <Divider />
