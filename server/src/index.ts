@@ -45,6 +45,7 @@ if (environment === 'development') {
 app.use((req: Request, res: Response, next: NextFunction) => {
     res.header('Access-Control-Allow-Origin', process.env.ORIGIN);
     res.header('Access-Control-Allow-Credentials', 'true');
+    res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS, PUT, DELETE");
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Authorization, Content-Type, Accept');
     next();
 });
