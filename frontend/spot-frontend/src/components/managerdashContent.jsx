@@ -47,18 +47,18 @@ class ManagerDashContent extends React.Component{
             return(
                 <>  
                     <p>
-                        Register a new parking lot with your account
-                    </p>
-                    <Button type="primary"  size="large" shape="round" onClick={this.handleLotreg}>
-                        Register New Lot
-                    </Button>
-                    <Divider />
-                    <p>
                         Register a new parking pass with an existing parking lot
                     </p>
                     <Button type="primary"  size="large" shape="round" onClick={this.handleNewpass}>
                         Register Parking Pass
                     </Button>
+                    <Divider />
+                        <p>
+                            Register a new parking lot with your account
+                        </p>
+                        <Button type="primary"  size="large" shape="round" onClick={this.handleLotreg}>
+                            Register New Lot
+                        </Button>
                     <Divider />
                     <p>
                         View/Edit existing parking lots

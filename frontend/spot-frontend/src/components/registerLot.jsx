@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form, Input, Button, AutoComplete, Divider} from 'antd';
+import { Form, Input, InputNumber, Button, AutoComplete, Divider} from 'antd';
 import { DollarCircleOutlined } from '@ant-design/icons';
 import { withRouter } from "react-router";
 
@@ -24,11 +24,23 @@ class RegisterLot extends React.Component{
     
         let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
         this.state.passes = response.info;
+        this.forceUpdate();
       }
 
-    handleSubmit = async e => {
-        let session_token = sessionStorage.getItem("session_token");
+    handleSubmit = async () => {
         let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+
+        let response = await fetch('http://localhost:5000/pass/passByName/' + this.passId, options).then((res) => res.json());
+        const newPassId = response.info[0].id;
+        console.log(newPassId)
+
+        let session_token = sessionStorage.getItem("session_token");
+        options = {
             method: "GET",
             credentials: "include",
             headers: {
@@ -37,20 +49,31 @@ class RegisterLot extends React.Component{
             },
         };
 
-        let response = await fetch('http://localhost:5000/user/', options).then((res) => res.json());
-        
+        response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+        console.log(response)
+        console.log(this.maxcap, this.rate, this.address, this.allowablePassLevel, newPassId)
+        console.log(JSON.stringify({
+            owner_id: response.info.id,
+            max_capacity: this.maxcap,
+            curr_capacity: 0,
+            rate: this.rate,
+            address: this.address,
+            allowable_pass_level: this.allowablePassLevel,
+            pass_id: newPassId,
+        }))
+
         options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                owner_id: response.info.id,
-                max_capacity: this.maxcap,
-                curr_capacity: this.mincap,
+                ownerId: response.info.id,
+                maxCapacity: this.maxcap,
                 rate: this.rate,
                 address: this.address,
-                allowable_pass_level: this.allowablePassLevel
+                allowablePassLevel: this.allowablePassLevel,
+                passId: newPassId,
             })
         }
     
@@ -87,11 +110,15 @@ class RegisterLot extends React.Component{
 
         let options = [
             {
-            label: renderTitle('passes'),
-            options: [],
+                label: renderTitle('Passes'),
+                options: [],
             }
-          ];
-        
+        ];
+        var i;
+        for (i = 0; i < this.state.passes.length; i++) {
+            options[0].options.push(renderItem(this.state.passes[i].name, this.state.passes[i].price));
+        }
+
         console.log(this.state.passes)
         
         return options;
@@ -124,6 +151,7 @@ class RegisterLot extends React.Component{
                 dropdownMatchSelectWidth={500}
                 style={{ width: 250 }}
                 options={this.getOptions()}
+                onChange={value => this.passId = value}
             >
                 <Input.Search size="large" placeholder="input here" />
             </AutoComplete>
@@ -138,45 +166,22 @@ class RegisterLot extends React.Component{
                 <Divider />
 
                 <Form.Item
-                    name={['user', 'maxcap']}
                     label="Maximum Capacity"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
                 >
-                    <Input onChange={e => this.maxcap = e.target.value}/>
+                    <InputNumber onChange={value => this.maxcap = value}/>
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'mincap']}
-                    label="Minimum Capacity"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
+                    label="Rate"
                 >
-                    <Input onChange={e => this.mincap = e.target.value}/>
-                </Form.Item>
-
-                <Form.Item
-                    name={['user', 'rate']}
-                    label="Hourly Rate"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
-                >
-                    <Input onChange={e => this.rate = e.target.value}/>
+                    <InputNumber 
+                            style={{
+                                width: 200,
+                            }}
+                            min="0"
+                            step="0.01"
+                            onChange={value => this.rate = value}
+                            stringMode/>
                 </Form.Item>
 
                 <Form.Item
@@ -194,17 +199,9 @@ class RegisterLot extends React.Component{
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'passlevel']}
                     label="Allowable Pass Level"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
                 >
-                    <Input onChange={e => this.passlevel = e.target.value}/>
+                    <InputNumber onChange={e => this.allowablePassLevel = e}/>
                 </Form.Item>
         
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

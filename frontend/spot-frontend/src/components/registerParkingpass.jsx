@@ -17,7 +17,8 @@ class ManagerRegisterParkingPass extends React.Component{
                 clearanceLevel: this.clearancelevel,
                 numAvailable: this.quantity,
                 expiration: this.expDate.format('YYYY-MM-DD'),
-                acquisition: "2020-04-11"
+                acquisition: "2020-04-11",
+                name: this.name
             })
         }
     
@@ -53,6 +54,14 @@ class ManagerRegisterParkingPass extends React.Component{
                 <h2>
                     Please Enter the parking pass attributes
                 </h2>
+                <p>Name</p>
+                <Space>
+                    <Form.Item
+                        
+                    >
+                        <Input onChange={e => this.name = e.target.value}/>
+                    </Form.Item>
+                </Space>
                 <Space>
                     <p>Price</p>
                     <InputNumber
@@ -60,7 +69,6 @@ class ManagerRegisterParkingPass extends React.Component{
                                 width: 200,
                             }}
                             min="0"
-                            max="100"
                             step="0.01"
                             onChange={value => this.price = value}
                             stringMode
