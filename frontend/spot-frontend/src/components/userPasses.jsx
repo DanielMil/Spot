@@ -1,33 +1,85 @@
 import React from 'react';
 import { withRouter } from "react-router";
-import { Input, AutoComplete } from 'antd';
+import { Input, AutoComplete, Layout, List } from 'antd';
 import { DollarCircleOutlined } from '@ant-design/icons';
-import { Space, Row, Col, Button } from 'antd';
 import PaymentField from './paymentField';
 
 
 class UserPasses extends React.Component{
-    
-    handleBuy = e => {
-        const data = {
-           
+    constructor(props) {
+        super(props)
+        this.state ={
+          passes: [],
+          data: [],
+          price: 0,
+          passName: ''
         }
-       
-        
+
+        const data = [
+            'Name: ',
+            'Clearance Level: ' ,
+            'Expiration: '
+        ];
+  
+        this.getPasses();
+    }
+
+    getPasses = async () => {
+        let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+    
+        let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
+        this.state.passes = response.info;
+        this.forceUpdate();
+      }
+    
+    handleBuy = async () => {
+        let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+
+        let response = await fetch('http://localhost:5000/pass/passByName/' + this.state.passName, options).then((res) => res.json());
+        const passId = response.info[0].id;
+
+        let session_token = sessionStorage.getItem("session_token");
+        options = {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: session_token,
+            },
+        };
+
+        response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+
+        options = {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                userId: response.info.id,
+                passId: passId
+            })
+        }
+
+        response = await fetch('http://localhost:5000/pass/purchase', options).then((res) => res.json());
+        console.log(response);
+        this.props.history.push("/userdashboard");
     };
 
-    render(){    
+    getOptions() {
         const renderTitle = (title) => (
             <span>
                 {title}
-                <a
-                    style={{ float: 'right' }}
-                    href="https://www.google.com/search?q=antd"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    more
-                </a>
             </span>
         );
             
@@ -47,64 +99,72 @@ class UserPasses extends React.Component{
             </div>
             ),
         });
-            
-        const options = [
+
+        let options = [
             {
-            label: renderTitle('Univeristy of Guelph'),
-            options: [renderItem('Semesterly Student Pass', '$200'), renderItem('Yearly Staff Pass', '$300')],
-            },
-            {
-            label: renderTitle('Guelph General Hospital'),
-            options: [renderItem('1 Month Pass', '$180'), renderItem('3 Month Pass', '$350')],
-            },
-            {
-            label: renderTitle('Pearson Internation Airport'),
-            options: [renderItem('Park and Fly 1 Week', '$100'), renderItem('Park and Fly 4 Week', '$350')],
-            },
+                label: renderTitle('Passes'),
+                options: [],
+            }
         ];
-            
+        var i;
+        for (i = 0; i < this.state.passes.length; i++) {
+            options[0].options.push(renderItem(this.state.passes[i].name, this.state.passes[i].price));
+        }
+        
+        return options;
+    }
+
+    async populateForm(value) {
+        let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+
+        let response = await fetch('http://localhost:5000/pass/passByName/' + value, options).then((res) => res.json());
+
+        this.setState({ data: ['Name: ' + response.info[0].name, 'Clearance Level: ' + response.info[0].clearance_level, 'Expiration: ' + response.info[0].expiration] });
+        this.setState({price: response.info[0].price})
+        this.state.passName = response.info[0].name;
+    }
+
+    render(){
         const Complete = () => (
             <AutoComplete
                 dropdownClassName="certain-category-search-dropdown"
                 dropdownMatchSelectWidth={500}
                 style={{ width: 250 }}
-                options={options}
+                options={this.getOptions()}
+                onChange={value => this.populateForm(value)}
             >
                 <Input.Search size="large" placeholder="input here" />
             </AutoComplete>
         );
+
+        
             
         return(
-            <>
-            <Space direction="vertical">
-                <Row>
-                    <Col span={6}/>
-                    <Col span={16}>
-                        <h2>
-                            Search for the Pass you would like to purchase    
-                        </h2>
-                    </Col>
-                    <Col span={4}/>
-                </Row>   
-                <Row>
-                    <Col span={8} />
-                    <Col span={8}>
-                        <Complete />
-                    </Col>
-                    <Col span={8} />
-                </Row>
-                <PaymentField />
-                <Row>
-                    <Col span={10} />
-                    <Col span={8}>
-                        <Button type="primary"  size="large"  shape="round" onClick={this.handleBuy}>
-                            Buy
-                        </Button>   
-                    </Col>
-                    <Col span={8} />
-                </Row>
-            </Space>
-            </>
+            <Layout>
+                <p>Choose Pass</p>
+                <Complete />
+                <List
+                    size="small"
+                    header={<p>{this.props.location.data}</p>}
+                    footer={<div><b>Total Due: ${this.state.price}</b></div>}
+                    bordered
+                    dataSource={this.state.data}
+                    renderItem={item => <List.Item>{item}</List.Item>}
+                />
+
+                <PaymentField/>
+
+                <div style={{paddingTop: '25px'}}>
+                    <button style={{float: 'right'}} type="primary" htmlType="submit" onClick={() => {this.handleBuy()}}>
+                        Submit
+                    </button>
+                </div>
+            </Layout>
         );
     }
 }

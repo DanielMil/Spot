@@ -37,9 +37,6 @@ class UserVehicles extends React.Component{
 
       let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
 
-      
-      console.log(response.info.id, this.plate, this.make, this.model);
-
       options = {
           method: 'POST',
           headers: {
