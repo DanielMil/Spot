@@ -5,7 +5,7 @@ import { Form, Space, DatePicker, Button, Divider } from 'antd';
 
 
 class ManagerRegisterParkingPass extends React.Component{
-    
+    formRef = React.createRef();
     handleSubmit = async () => {
         let options = {
             method: 'POST',
@@ -25,6 +25,9 @@ class ManagerRegisterParkingPass extends React.Component{
         let response = await fetch('http://localhost:5000/pass/', options).then(res => res.json())
     
         console.log(response);
+        this.formRef.current.resetFields();
+        this.props.history.push("/managerdashboard");
+        
     };
 
     render(){    
@@ -55,31 +58,24 @@ class ManagerRegisterParkingPass extends React.Component{
                     Please Enter the parking pass attributes
                 </h2>
                 <p>Name</p>
-                <Space>
-                    <Form.Item
-                        
-                    >
+                <Form {...layout} name="nest-messages"  validateMessages={validateMessages} ref={this.formRef} name="control-ref">    
+                
+                    <Form.Item>
                         <Input onChange={e => this.name = e.target.value}/>
                     </Form.Item>
-                </Space>
-                <Space>
                     <p>Price</p>
                     <InputNumber
-                            style={{
-                                width: 200,
-                            }}
-                            min="0"
-                            step="0.01"
-                            onChange={value => this.price = value}
-                            stringMode
-                        />  
-                </Space>
-
-                <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
+                        style={{
+                            width: 200,
+                        }}
+                        min="0"
+                        step="0.01"
+                        onChange={value => this.price = value}
+                        stringMode
+                    />  
                     <p>
                         Clearance Level
                     </p> 
-                    
                     <Form.Item
                         name={['user', 'clearancelevel']}
                         label=""
@@ -109,8 +105,9 @@ class ManagerRegisterParkingPass extends React.Component{
                     >
                         <InputNumber min={1} onChange={value => this.quantity = value} />
                     </Form.Item>
-                    <DatePicker onChange={value => this.expDate = value} placeholder='Expiration Date'/>
-                    <Divider />
+                        <DatePicker onChange={value => this.expDate = value} placeholder='Expiration Date'/>
+                        <Divider />
+                    
                     <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 0 }}>
                         <Button type="primary" htmlType="submit" onClick={this.handleSubmit}> 
                             Submit
