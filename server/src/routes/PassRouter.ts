@@ -64,7 +64,7 @@ router.post(
 router.get(
     '/passById/:id',
     async (req: Request, res: Response): Promise<any> => {
-        const id = req.params.passName;
+        const id = req.params.id;
         let passes: any = {};
         try {
             passes = await PassModel.findByPk(id);
