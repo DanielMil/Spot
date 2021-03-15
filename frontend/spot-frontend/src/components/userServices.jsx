@@ -126,33 +126,15 @@ class UserServices extends React.Component{
         return(
             <div className="site-card-wrapper">
                 <Space direction="vertical" size='large'>
-                    <Row gutter={400}>
-                    <Col span={2}/>
-                        <Col span= {20}>
-                            <Card title="Parking History" bordered={false}>
-                            <Table dataSource={historydata} columns={historycolumns} />
-                            </Card>
-                        </Col>
-                        <Col span={2} />
-                    </Row>
-                    <Row gutter={400}>  
-                        <Col span={20}/>
-                        <Col span= {20} >
-                            <Card title="User Information" bordered={false}>
-                                <Table dataSource={userinfodata} columns={userinfocolumns} />
-                            </Card>
-                        </Col>
-                        <Col span={2} />
-                    </Row>
-                    <Row gutter={400}>
-                        <Col span={2}/>
-                        <Col span= {20}>
-                            <Card title="Active Passes" bordered={false}>
-                                <Table dataSource={passdata} columns={passcolumns} />
-                            </Card>
-                        </Col>
-                        <Col span={2} />
-                    </Row>
+                  <Card title="Parking History" bordered={false}>
+                    <Table dataSource={historydata} columns={historycolumns} />
+                  </Card>
+                  <Card title="User Information" bordered={false}>
+                    <Table dataSource={userinfodata} columns={userinfocolumns} />
+                  </Card>
+                  <Card title="Active Passes" bordered={false}>
+                    <Table dataSource={passdata} columns={passcolumns} />
+                  </Card>
                 </Space>
             </div>
         );
