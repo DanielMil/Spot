@@ -79,21 +79,6 @@ class UserVehicles extends React.Component{
 
     response = await fetch('http://localhost:5000/car/' + response.info.id, options).then((res) => res.json());
     
-    const dataSource = [
-      {
-        key: '1',
-        make: 'Mike',
-        model: 32,
-        plate_number: '10 Downing Street',
-      },
-      {
-        key: '2',
-        make: 'John',
-        model: 42,
-        plate_number: '10 Downing Street',
-      },
-    ];
-    
     this.state.filteredData = response.info;
     console.log(this.state.filteredData);
     this.forceUpdate();

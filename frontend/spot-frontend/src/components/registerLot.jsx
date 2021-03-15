@@ -50,17 +50,6 @@ class RegisterLot extends React.Component{
         };
 
         response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
-        console.log(response)
-        console.log(this.maxcap, this.rate, this.address, this.allowablePassLevel, newPassId)
-        console.log(JSON.stringify({
-            owner_id: response.info.id,
-            max_capacity: this.maxcap,
-            curr_capacity: 0,
-            rate: this.rate,
-            address: this.address,
-            allowable_pass_level: this.allowablePassLevel,
-            pass_id: newPassId,
-        }))
 
         options = {
             method: 'POST',
