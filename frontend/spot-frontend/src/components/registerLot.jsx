@@ -25,7 +25,7 @@ class RegisterLot extends React.Component{
         let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
         this.state.passes = response.info;
         this.forceUpdate();
-      }
+    }
 
     handleSubmit = async () => {
         let options = {

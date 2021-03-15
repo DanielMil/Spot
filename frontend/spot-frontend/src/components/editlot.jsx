@@ -17,7 +17,9 @@ class EditLot extends React.Component{
         }
   
         this.getLot(this.props.location.state[0]);
-        this.getPasses()
+        this.lotid = this.props.location.state[0];
+        this.getPass(this.props.location.state[1]);
+        this.getPasses();
     }
 
     async getLot (id) {
@@ -28,7 +30,11 @@ class EditLot extends React.Component{
             },
         };
     
-        let response = await fetch('http://localhost:5000/get/' + id, options).then((res) => res.json());
+        let response = await fetch('http://localhost:5000/lot/get/' + id, options).then((res) => res.json());
+        this.state.capacity = response.info.max_capacity;
+        this.state.rate = response.info.rate;
+        this.state.passlevel = response.info.allowable_pass_level;
+        this.state.address = response.info.address;
     }
 
     getPasses = async () => {
@@ -38,10 +44,22 @@ class EditLot extends React.Component{
                 "Content-Type": "application/json",
             },
         };
-    
+
         let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
         this.state.passes = response.info;
         this.forceUpdate();
+    }
+
+    getPass = async (id) => {
+        let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+    
+        let response = await fetch('http://localhost:5000/pass/passById/' + id, options).then((res) => res.json());
+        this.state.pass = response.info.name;
       }
 
     handleSubmit = async () => {
@@ -52,9 +70,8 @@ class EditLot extends React.Component{
             },
         };
 
-        let response = await fetch('http://localhost:5000/pass/passByName/' + this.passId, options).then((res) => res.json());
+        let response = await fetch('http://localhost:5000/pass/passByName/' + this.state.pass, options).then((res) => res.json());
         const newPassId = response.info[0].id;
-        console.log(newPassId)
 
         let session_token = sessionStorage.getItem("session_token");
         options = {
@@ -68,23 +85,25 @@ class EditLot extends React.Component{
 
         response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
 
+        console.log(response.info.id, this.state.capacity, this.state.rate, this.state.address, this.state.passlevel, newPassId)
+
         options = {
-            method: 'POST',
+            method: 'PUT',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
                 ownerId: response.info.id,
-                maxCapacity: this.maxcap,
-                rate: this.rate,
-                address: this.address,
-                allowablePassLevel: this.allowablePassLevel,
+                maxCapacity: this.state.capacity,
+                rate: this.state.rate,
+                address: this.state.address,
+                allowablePassLevel: this.state.passlevel,
                 passId: newPassId,
+                lotId: this.lotid
             })
         }
     
-        response = await fetch('http://localhost:5000/lot/', options).then(res => res.json())
-    
+        response = await fetch('http://localhost:5000/lot/', options).then(res => res.json());
         console.log(response);
         
     };
@@ -124,8 +143,6 @@ class EditLot extends React.Component{
         for (i = 0; i < this.state.passes.length; i++) {
             options[0].options.push(renderItem(this.state.passes[i].name, this.state.passes[i].price));
         }
-
-        console.log(this.state.passes)
         
         return options;
     }
@@ -158,7 +175,7 @@ class EditLot extends React.Component{
                 style={{ width: 250 }}
                 options={this.getOptions()}
                 value={this.state.pass}
-                onChange={value => this.passId = value}
+                onChange={(value)=>  {this.setState({pass:value})}}
             >
                 <Input.Search size="large" placeholder="input here" />
             </AutoComplete>
@@ -175,25 +192,24 @@ class EditLot extends React.Component{
                 <Form.Item
                     label="Maximum Capacity"
                 >
-                    <InputNumber value={this.state.capacity} onChange={value => this.maxcap = value}/>
+                    <InputNumber value={this.state.capacity} onChange={(value)=>  {this.setState({capacity:value})}}/>
                 </Form.Item>
 
                 <Form.Item
                     label="Rate"
                 >
                     <InputNumber 
-                            style={{
-                                width: 200,
-                            }}
-                            min="0"
-                            step="0.01"
-                            value={this.state.rate}
-                            onChange={value => this.rate = value}
-                            stringMode/>
+                        style={{
+                            width: 200,
+                        }}
+                        min="0"
+                        step="0.01"
+                        value={this.state.rate}
+                        onChange={(value)=>  {this.setState({rate:value})}}
+                        stringMode/>
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'address']}
                     label="Address"
                     rules={[
                         {
@@ -203,13 +219,13 @@ class EditLot extends React.Component{
                     ]}
                     
                 >
-                    <Input value={this.state.address} onChange={e => this.address = e.target.value}/>
+                    <Input value={this.state.address} type="text" onChange={(value)=>  {this.setState({address:value.target.value})}}/>
                 </Form.Item>
 
                 <Form.Item
                     label="Allowable Pass Level"
                 >
-                    <InputNumber value={this.state.passlevel} onChange={e => this.allowablePassLevel = e}/>
+                    <InputNumber value={this.state.passlevel} onChange={(value)=>  {this.setState({passlevel:value})}}/>
                 </Form.Item>
         
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
