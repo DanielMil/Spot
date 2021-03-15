@@ -1,13 +1,46 @@
 import React from 'react';
-import { Form, Input, Button, AutoComplete, Divider} from 'antd';
+import { Form, Input, InputNumber, Button, AutoComplete, Divider} from 'antd';
 import { DollarCircleOutlined } from '@ant-design/icons';
 import { withRouter } from "react-router";
 
 
 class RegisterLot extends React.Component{
-    handleSubmit = async e => {
-        let session_token = sessionStorage.getItem("session_token");
+    constructor(props) {
+        super(props)
+        this.state ={
+          passes: []
+        }
+  
+        this.getPasses();
+    }
+
+    getPasses = async () => {
         let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        };
+    
+        let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
+        this.state.passes = response.info;
+        this.forceUpdate();
+      }
+
+    handleSubmit = async () => {
+        let options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+            },
+        };
+
+        let response = await fetch('http://localhost:5000/pass/passByName/' + this.passId, options).then((res) => res.json());
+        const newPassId = response.info[0].id;
+        console.log(newPassId)
+
+        let session_token = sessionStorage.getItem("session_token");
+        options = {
             method: "GET",
             credentials: "include",
             headers: {
@@ -16,20 +49,20 @@ class RegisterLot extends React.Component{
             },
         };
 
-        let response = await fetch('http://localhost:5000/user/', options).then((res) => res.json());
-        
+        response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+
         options = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                owner_id: response.user.id,
-                max_capacity: this.maxcap,
-                curr_capacity: this.mincap,
+                ownerId: response.info.id,
+                maxCapacity: this.maxcap,
                 rate: this.rate,
                 address: this.address,
-                allowable_pass_level: this.allowablePassLevel
+                allowablePassLevel: this.allowablePassLevel,
+                passId: newPassId,
             })
         }
     
@@ -38,6 +71,47 @@ class RegisterLot extends React.Component{
         console.log(response);
         
     };
+
+    getOptions() {
+        const renderTitle = (title) => (
+            <span>
+                {title}
+                
+            </span>
+        );
+            
+        const renderItem = (title, count) => ({
+            value: title,
+            label: (
+            <div
+                style={{
+                    display: 'flex',
+                    justifyContent: 'space-between',
+                }}
+            >  
+                {title}
+                <span>
+                    <DollarCircleOutlined /> {count}
+                </span>
+            </div>
+            ),
+        });
+
+        let options = [
+            {
+                label: renderTitle('Passes'),
+                options: [],
+            }
+        ];
+        var i;
+        for (i = 0; i < this.state.passes.length; i++) {
+            options[0].options.push(renderItem(this.state.passes[i].name, this.state.passes[i].price));
+        }
+
+        console.log(this.state.passes)
+        
+        return options;
+    }
     
     render(){
 
@@ -65,92 +139,38 @@ class RegisterLot extends React.Component{
                 dropdownClassName="certain-category-search-dropdown"
                 dropdownMatchSelectWidth={500}
                 style={{ width: 250 }}
-                options={options}
+                options={this.getOptions()}
+                onChange={value => this.passId = value}
             >
                 <Input.Search size="large" placeholder="input here" />
             </AutoComplete>
         );
-
-        const renderTitle = (title) => (
-            <span>
-                {title}
-                
-            </span>
-        );
-            
-        const renderItem = (title, count) => ({
-            value: title,
-            label: (
-            <div
-                style={{
-                    display: 'flex',
-                    justifyContent: 'space-between',
-                }}
-            >  
-                {title}
-                <span>
-                    <DollarCircleOutlined /> {count}
-                </span>
-            </div>
-            ),
-        });
-
-        const options = [
-            {
-            label: renderTitle('Registered Parking Lots'),
-            options: [renderItem('Pearson Intl', 'max'), renderItem('Hospital', 'max')],
-            },
-            
-        ];
         
         return (
             <Form {...layout} name="nest-messages"  validateMessages={validateMessages}>
                 <h2>
-                    Select the parking lot you would like to register a new pass to    
+                    Select the pass you would like to register a new parking lot to    
                 </h2>
                 <Complete />
                 <Divider />
 
                 <Form.Item
-                    name={['user', 'maxcap']}
                     label="Maximum Capacity"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
                 >
-                    <Input onChange={e => this.maxcap = e.target.value}/>
+                    <InputNumber onChange={value => this.maxcap = value}/>
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'mincap']}
-                    label="Minimum Capacity"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
+                    label="Rate"
                 >
-                    <Input onChange={e => this.mincap = e.target.value}/>
-                </Form.Item>
-
-                <Form.Item
-                    name={['user', 'rate']}
-                    label="Hourly Rate"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
-                >
-                    <Input onChange={e => this.rate = e.target.value}/>
+                    <InputNumber 
+                            style={{
+                                width: 200,
+                            }}
+                            min="0"
+                            step="0.01"
+                            onChange={value => this.rate = value}
+                            stringMode/>
                 </Form.Item>
 
                 <Form.Item
@@ -168,17 +188,9 @@ class RegisterLot extends React.Component{
                 </Form.Item>
 
                 <Form.Item
-                    name={['user', 'passlevel']}
                     label="Allowable Pass Level"
-                    rules={[
-                        {
-                        required:true,
-                        type: 'number',
-                        },
-                    ]}
-                    
                 >
-                    <Input onChange={e => this.passlevel = e.target.value}/>
+                    <InputNumber onChange={e => this.allowablePassLevel = e}/>
                 </Form.Item>
         
                 <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>

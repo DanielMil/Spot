@@ -5,9 +5,15 @@ import { withRouter } from "react-router";
 
 class ManagerDashContent extends React.Component{
 
-    state = {
-        loggedin : false
+    constructor(props) {
+        super(props)
+        this.state ={
+            loggedin: false
+        }
+
+        this.loginCheck();
     }
+
     loginCheck = async (credentials) => {
     
         let session_token = sessionStorage.getItem("session_token");
@@ -37,23 +43,22 @@ class ManagerDashContent extends React.Component{
         this.props.history.push("/viewlotinfo")
     }
     render(){
-        this.loginCheck()
         if(this.state.loggedin){
             return(
                 <>  
-                    <p>
-                        Register a new parking lot with your account
-                    </p>
-                    <Button type="primary"  size="large" shape="round" onClick={this.handleLotreg}>
-                        Register New Lot
-                    </Button>
-                    <Divider />
                     <p>
                         Register a new parking pass with an existing parking lot
                     </p>
                     <Button type="primary"  size="large" shape="round" onClick={this.handleNewpass}>
                         Register Parking Pass
                     </Button>
+                    <Divider />
+                        <p>
+                            Register a new parking lot with your account
+                        </p>
+                        <Button type="primary"  size="large" shape="round" onClick={this.handleLotreg}>
+                            Register New Lot
+                        </Button>
                     <Divider />
                     <p>
                         View/Edit existing parking lots

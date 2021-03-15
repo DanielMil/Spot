@@ -5,7 +5,29 @@ import { Table, Space, InputNumber } from 'antd';
 
 
 class LotInformation extends React.Component{
-    
+  constructor(props) {
+    super(props)
+    this.state ={
+      lots: [],
+      passes:[]
+    }
+
+    this.fetchLots();
+  }
+
+  async fetchLots() {
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        },
+    };
+
+    let response = await fetch('http://localhost:5000/lot/all', options).then((res) => res.json());
+    this.state.lots = response.info;
+    console.log(this.state.lots);
+    this.forceUpdate();
+  }
     
     render(){
         function onChange(value) {
@@ -22,41 +44,46 @@ class LotInformation extends React.Component{
         const lotcolumns = [
             {
               title: 'Parking Lot',
-              dataIndex: 'parkinglot',
-              key: 'parkinglot',
+              dataIndex: 'address',
+              key: 'address',
             },
             {
               title: 'Available Spaces',
-              dataIndex: 'avail_space',
-              key: 'avail_space',
+              dataIndex: 'curr_capacity',
+              key: 'curr_capacity',
             },
             {
               title: 'Total Spaces',
-              dataIndex: 'total_space',
-              key: 'total_space',
+              dataIndex: 'max_capacity',
+              key: 'max_capacity',
             },
             {
-                title: 'Rate',
-                key: 'rate',
-                render: (text, record) => (
-                  <Space size="middle">
-                    <InputNumber
-                        style={{
-                            width: 200,
-                          }}
-                          defaultValue="1"
-                          min="0"
-                          max="10"
-                          step="0.01"
-                          onChange={onChange}
-                          stringMode
-                    />  
-                  </Space>
-                ),
+              title: 'Rate',
+              dataIndex: 'rate',
+              key: 'rate',
+            },
+            {
+              title: 'Pass Level',
+              dataIndex: 'allowable_pass_level',
+              key: 'allowable_pass_level',
+            },
+            {
+              title: 'Edit',
+              key: 'edit',
+              render: (text, Edit) => (
+                <Space size="middle">
+                  <a  onClick={() => {this.edit(Edit.id)}} >
+                      Edit
+                  </a>
+                </Space>
+              ),
             }
         ];
         return(
-            <Table dataSource={lotdata} columns={lotcolumns} />
+          <div>
+            <h1>Lots</h1>
+            <Table dataSource={this.state.lots} columns={lotcolumns} />
+          </div>
         );
     }
 }

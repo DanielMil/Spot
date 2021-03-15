@@ -9,9 +9,17 @@ const { SubMenu } = Menu;
 const {  Sider } = Layout;
 
 class SiderMenu extends React.Component{
-  state = {
-    loggedin : false
+
+  constructor(props) {
+    super(props)
+    this.state ={
+      loggedin: false,
+      isOwner: false
+    }
+
+    this.loginCheck();
   }
+
 loginCheck = async (credentials) => {
 
     let session_token = sessionStorage.getItem("session_token");
@@ -25,8 +33,9 @@ loginCheck = async (credentials) => {
     };
     let response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
     if (response.status==="Success"){
-        let loggedin = true
-        this.setState({loggedin})
+        let loggedin = true;
+        this.state.isOwner = response.info.isOwner;
+        this.setState({loggedin});
     }
   
   } 
@@ -75,15 +84,19 @@ loginCheck = async (credentials) => {
           this.props.history.push("/managersignup")
         }
         if(e.key==="gotodash"){
-          this.props.history.push("/userdashboard")
+          if (this.state.isOwner) {
+            this.props.history.push("/managerdashboard")
+          } else {
+            this.props.history.push("/userdashboard")
+          }
         }
         if(e.key==="gotologout"){
           this.logoutcheck()
         }
+
       };
     
       render() {
-        this.loginCheck()
         if (this.state.loggedin){
           return (
             <Sider

@@ -72,10 +72,7 @@ class UserPasses extends React.Component{
             >
                 <Input.Search size="large" placeholder="input here" />
             </AutoComplete>
-        );   
-        
-        
-       
+        );
             
         return(
             <>

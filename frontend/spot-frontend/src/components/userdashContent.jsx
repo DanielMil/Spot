@@ -17,9 +17,15 @@ class UserDashContent extends React.Component{
             } 
         )
     }**/
-    state = {
-        loggedin : false
+    constructor(props) {
+        super(props)
+        this.state ={
+            loggedin: false
+        }
+
+        this.loginCheck();
     }
+
     loginCheck = async (credentials) => {
     
         let session_token = sessionStorage.getItem("session_token");
@@ -49,7 +55,6 @@ class UserDashContent extends React.Component{
         this.props.history.push("/userservicesmanagement")
     }
     render(){
-        this.loginCheck()
         if (this.state.loggedin){
             return(
                 <>  
