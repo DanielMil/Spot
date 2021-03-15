@@ -24,10 +24,23 @@ class LogInField extends React.Component{
             sessionStorage.setItem("session_token", response.info.token);
 
         }
+        options = {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: response.info.token,
+            },
+        };
+
+        response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+
+        if (response.info.isOwner){
+            this.props.history.push("/managerdashboard")
+        }else{
+            this.props.history.push("/userdashboard")
+        }
         
-        console.log( response);
-        
-        this.props.history.push("/userdashboard")
     };
     
     render(){

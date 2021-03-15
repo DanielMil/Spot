@@ -25,7 +25,24 @@ class ManagerLogInField extends React.Component{
 
         }
         
-        this.props.history.push("/managerdashboard")
+        
+        options = {
+            method: "GET",
+            credentials: "include",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: response.info.token,
+            },
+        };
+
+        response = await fetch('http://localhost:5000/auth/user', options).then((res) => res.json());
+
+        if (response.info.isOwner){
+            this.props.history.push("/managerdashboard")
+        }else{
+            this.props.history.push("/userdashboard")
+        }
+        
     };
     
     render(){
