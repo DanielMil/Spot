@@ -15,6 +15,13 @@ class LotInformation extends React.Component{
     this.fetchLots();
   }
 
+  edit(editId, pass) {
+    this.props.history.push({
+      pathname: '/editlotinfo',
+      state: [editId, pass]
+    })
+  }
+
   async fetchLots() {
     let options = {
         method: "GET",
@@ -72,7 +79,7 @@ class LotInformation extends React.Component{
               key: 'edit',
               render: (text, Edit) => (
                 <Space size="middle">
-                  <a  onClick={() => {this.edit(Edit.id)}} >
+                  <a  onClick={() => {this.edit(Edit.id, Edit.pass_id)}} >
                       Edit
                   </a>
                 </Space>
