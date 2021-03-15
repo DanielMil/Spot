@@ -62,6 +62,25 @@ router.post(
 );
 
 router.get(
+    '/passById/:id',
+    async (req: Request, res: Response): Promise<any> => {
+        const id = req.params.id;
+        let passes: any = {};
+        try {
+            passes = await PassModel.findByPk(id);
+            if (!passes) {
+                sendResponse(`Cannot find pass with id = ${id}.`, 404, res);
+                return;
+            }
+        } catch (err) {
+            console.log(err);
+            sendResponse('Error getting passes.', 500, res);
+        }
+        sendResponse(passes, 200, res);
+    },
+);
+
+router.get(
     '/:userId',
     async (req: Request, res: Response): Promise<any> => {
         const id = req.params.userId;
@@ -81,7 +100,8 @@ router.get(
     },
 );
 
-router.get('/passByName/:passName', 
+router.get(
+    '/passByName/:passName',
     async (req: Request, res: Response): Promise<any> => {
         const name = req.params.passName;
         let passes = {};
@@ -95,7 +115,8 @@ router.get('/passByName/:passName',
     },
 );
 
-router.get('/', 
+router.get(
+    '/',
     async (req: Request, res: Response): Promise<any> => {
         let passes = {};
         try {
