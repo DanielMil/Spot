@@ -23,6 +23,7 @@ import ManageLots from "./pages/manageLots"
 import ManagerPassManagement from "./pages/managerPassmanagement"
 import ViewLotInfo from "./pages/lotInfo"
 import EditLots from "./pages/editLotPage"
+import EditPasses from "./pages/editPassPage"
 
 
 //components
@@ -51,6 +52,7 @@ class App extends React.Component {
         <Route exact path="/managerpassmanagement" component={ManagerPassManagement} />
         <Route exact path="/viewlotinfo" component={ViewLotInfo} />
         <Route exact path="/editlotinfo" component={EditLots} />
+        <Route exact path="/editpassinfo" component={EditPasses} />
 
 
         <Redirect to="/404Error"/>

@@ -13,6 +13,7 @@ class LotInformation extends React.Component{
     }
 
     this.fetchLots();
+    this.getPasses();
   }
 
   edit(editId, pass) {
@@ -21,6 +22,26 @@ class LotInformation extends React.Component{
       state: [editId, pass]
     })
   }
+
+  passedit(passid) {
+    this.props.history.push({
+      pathname: '/editpassinfo',
+      state: [passid]
+    })
+  }
+
+  getPasses = async () => {
+    let options = {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    };
+
+    let response = await fetch('http://localhost:5000/pass/', options).then((res) => res.json());
+    this.state.passes = response.info;
+    this.forceUpdate();
+}
 
   async fetchLots() {
     let options = {
@@ -47,6 +68,45 @@ class LotInformation extends React.Component{
             },
             
         ];
+
+        const passcolumns = [
+          {
+            title: 'Name',
+            dataIndex: 'name',
+            key: 'name',
+          },
+          {
+            title: 'Price',
+            dataIndex: 'price',
+            key: 'price',
+          },
+          {
+            title: 'Number Available',
+            dataIndex: 'num_available',
+            key: 'num_available',
+          },
+          {
+            title: 'Pass Level',
+            dataIndex: 'clearance_level',
+            key: 'clearance_level',
+          },
+          {
+            title: 'Expiration',
+            dataIndex: 'expiration',
+            key: 'expiration',
+          },
+          {
+            title: 'Edit',
+            key: 'edit',
+            render: (text, Edit) => (
+              <Space size="middle">
+                <a  onClick={() => {this.passedit(Edit.id)}} >
+                    Edit
+                </a>
+              </Space>
+            ),
+          }
+      ];
         
         const lotcolumns = [
             {
@@ -86,10 +146,17 @@ class LotInformation extends React.Component{
               ),
             }
         ];
+
         return(
           <div>
-            <h1>Lots</h1>
-            <Table dataSource={this.state.lots} columns={lotcolumns} />
+            <Space>
+              <h1>Lots</h1>
+              <Table dataSource={this.state.lots} columns={lotcolumns} />
+            </Space>
+            <Space>
+              <h1>Passes</h1>
+              <Table dataSource={this.state.passes} columns={passcolumns} />
+            </Space>
           </div>
         );
     }

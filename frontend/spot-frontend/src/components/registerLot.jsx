@@ -69,7 +69,7 @@ class RegisterLot extends React.Component{
         response = await fetch('http://localhost:5000/lot/', options).then(res => res.json())
     
         console.log(response);
-        
+        this.props.history.push("/viewlotinfo");
     };
 
     getOptions() {
