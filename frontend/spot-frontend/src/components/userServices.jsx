@@ -24,7 +24,9 @@ class UserServices extends React.Component{
       method: "PUT"
     };    
   }
-
+  edit() {
+    this.props.history.push({pathname: '/edituserinfo'})
+  }
   fetchParkingHistory = async () => {
     let session_token = sessionStorage.getItem("session_token");
     let options = {
@@ -141,7 +143,7 @@ class UserServices extends React.Component{
                 key: 'action',
                 render: (text, record) => (
                   <Space size="middle">
-                    <a data-id={record.name} onClick={() => { }}>
+                    <a  onClick={() => {this.edit()}}>
                         Change
                      </a>
                   </Space>
