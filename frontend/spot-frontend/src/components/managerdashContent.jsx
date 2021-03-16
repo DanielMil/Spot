@@ -61,10 +61,10 @@ class ManagerDashContent extends React.Component{
                         </Button>
                     <Divider />
                     <p>
-                        View/Edit existing parking lots
+                        View/Edit existing parking lots and passes
                     </p>
                     <Button type="primary"  size="large" shape="round" onClick={this.handleInfo}>
-                        View Lot Information
+                        View Lot and Passes
                     </Button>
                 </>
             );
