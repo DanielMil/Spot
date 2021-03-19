@@ -6,9 +6,13 @@ import { UserModel } from './User';
 export class UserHistoryModel extends Sequelize.Model {
     public id!: number;
     public lot_id!: number;
-    public user_id!: number;
+    public user_id?: number;
     public timestamp_in!: Date;
     public timestamp_out!: Date;
+    public cost!: number;
+    public hasPass!: boolean;
+    public plate_number!: string;
+    public has_left!: boolean;
 }
 
 export const userHistoryInit = async (): Promise<any> => {
@@ -29,7 +33,7 @@ export const userHistoryInit = async (): Promise<any> => {
             },
             user_id: {
                 type: Sequelize.DataTypes.INTEGER,
-                allowNull: false,
+                allowNull: true,
                 references: {
                     model: UserModel,
                     key: 'id',
@@ -41,6 +45,21 @@ export const userHistoryInit = async (): Promise<any> => {
             },
             timestamp_out: {
                 type: Sequelize.DataTypes.DATE,
+            },
+            cost: {
+                type: Sequelize.DataTypes.DOUBLE,
+            },
+            hasPass: {
+                type: Sequelize.DataTypes.BOOLEAN,
+                allowNull: false,
+            },
+            plate_number: {
+                type: Sequelize.DataTypes.STRING,
+                allowNull: false,
+            },
+            has_left: {
+                type: Sequelize.DataTypes.BOOLEAN,
+                allowNull: false,
             },
         },
         {

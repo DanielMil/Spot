@@ -17,9 +17,10 @@ export function configurePassport(passport: passport.PassportStatic): void {
     passport.use(
         new Strategy({ usernameField: 'email' }, async (email: string, password: string, done) => {
             try {
+                let isMatch: boolean = false;
                 const user: Express.User = (await UserModel.findOne({ where: { email } })) as Express.User;
                 if (!user) return done(null, false, { message: 'Cannot find user.' });
-                const isMatch: boolean = await bcrypt.compare(password, user.password);
+                if (user.password !== undefined) isMatch = await bcrypt.compare(password, user.password);
                 if (isMatch) return done(null, user);
                 else done(null, false, { message: 'Passwords do not match!' });
             } catch (err) {
