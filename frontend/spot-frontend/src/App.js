@@ -1,8 +1,7 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import './index.css';
-import { BrowserRouter as Router, Route, Switch, Link, Redirect } from "react-router-dom";
-import { withRouter } from "react-router";
+import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 
 //pages
 import HomePage from "./pages/homePage"

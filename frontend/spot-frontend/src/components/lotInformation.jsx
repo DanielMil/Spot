@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from "react-router";
-import { Table, Space, InputNumber } from 'antd';
+import { Table, Space} from 'antd';
 
 
 

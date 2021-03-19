@@ -150,16 +150,6 @@ class UserServices extends React.Component{
                 ),
             }
         ];
-        const passdata = [
-            {
-              id: '0076969',
-              price: '$300',
-              acquisition: '30/12/1997',
-              expiration: '30/12/2997',
-              clearance: 'where u want bro',
-            },
-            
-        ];
         
         const passcolumns = [
             {
@@ -205,20 +195,6 @@ class UserServices extends React.Component{
               dataIndex: 'timestamp_out',
               key: 'timestamp_out',
             },
-            {
-                title: 'Action',
-                key: 'action',
-                render: (text, record) => (
-                  <Space size="middle">
-                    <a data-id={record.name} onClick={() => { this.props.history.push({
-                                                            pathname: '/payment',
-                                                            data: record.name
-                                                          }) }}>
-                        Pay
-                     </a>
-                  </Space>
-                ),
-            }
         ];
         return(
             <div className="site-card-wrapper">
