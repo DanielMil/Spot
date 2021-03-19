@@ -45,11 +45,6 @@ while True:
 
     plateScans.append(plateNumber)
 
-    url = 'https://www.w3schools.com/python/demopage.php'
-    myobj = {'somekey': 'somevalue'}
-
-    x = requests.post(url, data=myobj)
-
     if len(plateScans) == 10:
         plateNumber = max(set(plateScans), key=plateScans.count)
         print(plateNumber)
