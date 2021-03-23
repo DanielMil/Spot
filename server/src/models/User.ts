@@ -6,7 +6,7 @@ export class UserModel extends Sequelize.Model {
     public firstName!: string;
     public lastName!: string;
     public email!: string;
-    public password!: string;
+    public password?: string;
     public isOwner!: boolean;
     public resetPasswordToken!: string | undefined;
     public resetPasswordExpiration!: Date | undefined;

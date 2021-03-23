@@ -195,6 +195,11 @@ class UserServices extends React.Component{
               dataIndex: 'timestamp_out',
               key: 'timestamp_out',
             },
+            {
+              title: 'Cost',
+              dataIndex: 'cost',
+              key: 'cost',
+            },
         ];
         return(
             <div className="site-card-wrapper">
