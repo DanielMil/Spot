@@ -1,34 +1,48 @@
-import React from 'react';
-import 'antd/dist/antd.css';
-import { Layout } from 'antd';
-
+import React from "react";
+import "antd/dist/antd.css";
+import { Layout, Row, Card, Alert, Divider } from "antd";
+import { CopyrightCircleOutlined } from "@ant-design/icons";
 
 //components
-import SiderMenu from '../components/siderMenu';
-import SiteHeader from '../components/siteHeader';
-import ManagerRegisterParkingPass from '../components/registerParkingpass';
+import SiderMenu from "../components/siderMenu";
+import SiteHeader from "../components/siteHeader";
+import ManagerRegisterParkingPass from "../components/registerParkingpass";
 
 const { Footer, Content } = Layout;
-const ManagerPassManagement =() => {
-
-    return (
+const ManagerPassManagement = () => {
+  return (
+    <Layout>
+      <Layout>
+        <SiteHeader />
+      </Layout>
+      <Layout>
+        <SiderMenu />
         <Layout>
-            <Layout>
-                <SiteHeader/>
-            </Layout>
-            <Layout>    
-                    <SiderMenu />
-                <Layout>
-                    <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 768 }}>
-                            <ManagerRegisterParkingPass />
-                        </div>
-                    </Content>
-                    <Footer style={{ textAlign: 'center' }}>Copyright DAN THE MAN</Footer>
-                </Layout>
-            </Layout>
+          <Content style={{ margin: "24px 16px 0" }}>
+            <div
+              className="site-layout-background"
+              style={{ padding: 24, minHeight: 768 }}
+            >
+              <Row type="flex" align="center">
+                <Card style={{ width: 600 }}>
+                  <Alert
+                    style={{ textAlign: "center" }}
+                    message="Please enter the parking pass attributes."
+                    type="info"
+                  />
+                  <Divider />
+                  <ManagerRegisterParkingPass />
+                </Card>
+              </Row>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Univeristy of Guelph Class of 2021, Group 50
+            <CopyrightCircleOutlined />
+          </Footer>
         </Layout>
-    );
-
+      </Layout>
+    </Layout>
+  );
 };
 export default ManagerPassManagement;

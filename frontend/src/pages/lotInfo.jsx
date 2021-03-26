@@ -1,34 +1,46 @@
-import React from 'react';
-import 'antd/dist/antd.css';
-import { Layout } from 'antd';
-
+import React from "react";
+import "antd/dist/antd.css";
+import { Layout } from "antd";
+import { CopyrightCircleOutlined } from "@ant-design/icons";
 
 //components
-import SiderMenu from '../components/siderMenu';
-import SiteHeader from '../components/siteHeader';
-import LotInformation from '../components/lotInformation';
+import SiderMenu from "../components/siderMenu";
+import SiteHeader from "../components/siteHeader";
+import LotInformation from "../components/lotInformation";
 
 const { Footer, Content } = Layout;
-const ViewLotInfo =() => {
-
-    return (
+const ViewLotInfo = () => {
+  return (
+    <Layout>
+      <Layout>
+        <SiteHeader />
+      </Layout>
+      <Layout>
+        <SiderMenu />
         <Layout>
-            <Layout>
-                <SiteHeader/>
-            </Layout>
-            <Layout>    
-                    <SiderMenu />
-                <Layout>
-                    <Content style={{ margin: '24px 16px 0' }}>
-                        <div className="site-layout-background" style={{ padding: 24, minHeight: 768 }}>
-                            <LotInformation />
-                        </div>
-                    </Content>
-                    <Footer style={{ textAlign: 'center' }}>Copyright DAN THE MAN</Footer>
-                </Layout>
-            </Layout>
+          <Content style={{ margin: "24px 16px 0" }}>
+            <div
+              className="site-layout-background"
+              style={{ padding: 24, minHeight: 768 }}
+            >
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <LotInformation />
+              </div>
+            </div>
+          </Content>
+          <Footer style={{ textAlign: "center" }}>
+            Univeristy of Guelph Class of 2021, Group 50
+            <CopyrightCircleOutlined />
+          </Footer>
         </Layout>
-    );
-
+      </Layout>
+    </Layout>
+  );
 };
 export default ViewLotInfo;
