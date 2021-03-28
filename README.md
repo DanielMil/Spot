@@ -1,13 +1,11 @@
-<img src="https://github.com/DanielMil/Spot/blob/master/frontend/src/images/logo.svg" alt="logo" width="200"/>
+<img src="https://github.com/DanielMil/Spot/blob/master/frontend/src/images/logo.svg" alt="logo" width="175"/>
 
----
-
-## The Application
+## About the Application
 Spot is a full-stack application that aims to simplify and consolidate the parking process. It was designed as the engineering capstone project for ENGG41X at the University of Guelph. It consists of a React.js web client, Node.js with TypeScript API and embedded logic for CV license plate detection. The project also includes hardware components that can be seen below.
 
-<img src="https://github.com/DanielMil/Spot/blob/master/images/circuit.png" alt="circuit" width="300"/>
+<img src="https://github.com/DanielMil/Spot/blob/master/images/circuit.png" alt="circuit" width="350"/>
 
-<img src="https://github.com/DanielMil/Spot/blob/master/images/gate.png" alt="gate" width="300"/>
+<img src="https://github.com/DanielMil/Spot/blob/master/images/gate.png" alt="gate" width="350"/>
 
 ---
 
