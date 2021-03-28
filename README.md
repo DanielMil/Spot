@@ -1,4 +1,12 @@
+<img src="https://github.com/DanielMil/Spot/blob/master/frontend/src/images/logo.svg" alt="logo" width="150"/>
+
 # Spot
+## The Application
+Spot is a full-stack application that aims to simplify and consolidate the parking process. It was designed as the engineering capstone project for ENGG41X at the University of Guelph. It consists of a React.js web client, Node.js with TypeScript API and embedded logic for CV license plate detection. The project also includes hardware components that can be seen below.
+
+<img src="https://github.com/DanielMil/Spot/images/circuit.png" alt="circuit" width="300"/>
+
+<img src="https://github.com/DanielMil/Spot/images/gate.png" alt="gate" width="300"/>
 
 ## Environment Setup
 ### 1. Install the following software:
@@ -38,21 +46,12 @@ foo@bar:~$ npm run dev
 
 You can ensure that the setup was successful by running the ```npm run test``` and ensuring that all unit tests pass.
 
-### 4. Run the Mobile App
-
-Download the Expo app on your mobile device. When prompted, use your phone camera to scan the QR code.
-
-To run the front-end:
+### 4. Run the client
 ```console
-# Install Expo globally
-foo@bar:~$ npm install --global expo-cli
-foo@bar:~$ cd mobile
+foo@bar:~$ cd client
+foo@bar:~$ npm install
 foo@bar:~$ npm start
-# A web browser should launch with a QR code. Scan this code to launch the app on your phone.
 ```
-For me info about Expo, click [here](https://docs.expo.io/).
-
-For UI consistency, use the components found [here](https://docs.nativebase.io/Components.html#Components).
 
 ### 5. Editor Config (Optional)
 
@@ -82,16 +81,6 @@ foo@bar:~$ docker-compose up
 will suffice.
 
 Connecting to DBeaver and using Postman should be exactly the same.
-
-## Updating the Production Server
-SSH into the remote server and execute the following.
-```console
-foobar:~$ cd /home/$user/Spot
-foobar:~$ sudo su
-foobar:~$ git pull
-foobar:~$ . ./env.sh
-foobar:~$ ./init.sh
-```
 
 ## Notes:
 - You can create a new database in DBeaver and the connection port should work be default.
