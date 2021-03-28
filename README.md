@@ -7,10 +7,6 @@ Spot is a full-stack application that aims to simplify and consolidate the parki
 
 <img src="https://github.com/DanielMil/Spot/blob/master/images/gate.png" alt="gate" width="350"/>
 
-
-![Circuit](https://github.com/DanielMil/Spot/blob/master/images/circuit.png)
-![Gate](https://github.com/DanielMil/Spot/blob/master/images/gate.png)
-
 ---
 
 ## Environment Setup
